@@ -1,0 +1,373 @@
+.Tool {
+  display: flex; /* Utilisation de flexbox pour le positionnement */
+}
+
+.Tool .LeftSide {
+  width: 65px;
+  height: 670px;
+  border: 1px solid rgba(132, 133, 134, 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(132, 133, 134, 0.15); 
+  z-index: 1; 
+ margin-top: 40px; 
+ background-color: white;
+}
+
+.Tool .LeftSide .Top {
+  display: inline-block;
+  height: 570px; 
+  z-index: 1; 
+} 
+.Tool .LeftSide .Top img {
+ width: 50px;
+}
+
+.Tool .LeftSide .Bottom {
+  display: inline-block;
+  margin-left: 20px; 
+  z-index: 1; 
+}
+
+.Tool .LeftSide .Bottom img {
+  display: block;
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  border-radius: 30px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.Tool .LeftSide .Bottom FaCog {
+  display: block;
+  color: gray;
+}
+
+.Tool .RightSide {
+  display: inline-block;
+}
+
+.Tool .RightSide .Header {
+  position: fixed;
+  top: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(132, 133, 134, 0.15);
+  margin-top: 7px;
+  width: 100%;
+  margin-bottom: 0px; 
+  z-index: 1;  
+  background-color: white;
+}
+
+.Tool .RightSide .Header .Left {
+  display: inline-block;
+  margin-right: 750px;
+  margin-left: 40px;
+}
+
+.Tool .RightSide .Header .Left p {
+  display: inline-block;
+  font-size: 15px;
+  margin-left: 10px;
+}
+
+.Tool .RightSide .Header .Right {
+  display: inline-block;
+  margin-right: 50px; 
+  
+}
+
+.Tool .RightSide .Header .Right img {
+  width: 30px;
+  margin-right: 7px; 
+  align-items: center;
+}
+
+.Tool .RightSide .Header .Right input {
+  padding: 8px;
+  border: 1px solid rgb(132, 133, 134); /* Conservation de la couleur et de l'épaisseur de la bordure */
+  border-radius: 5px;
+}
+
+.Tool .RightSide .Header .Right button {
+  margin-left: 15px;
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 10px 14px;
+  font-size: 10px;
+  cursor: pointer;
+  border-radius: 5px; /* Ajout de bord arrondi */
+}
+
+.Tool .RightSide .Header .Right button:hover {
+  background-color: rgb(11, 140, 39);
+}
+
+
+.Tool .RightSide .Library {
+  display: inline-block;
+  position: fixed; 
+  background-color: white;
+  top: 50px;
+  width: 300px;
+  margin-top: 5px;
+  height: 625px;
+  border: 1px solid rgba(132, 133, 134, 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(132, 133, 134, 0.15); 
+  z-index: 1; 
+}
+
+.Tool .RightSide .Library .Listes {
+  background-color: rgb(236, 228, 228);
+margin-top: 15px;
+margin-right: 30px;
+margin-left: 30px;
+margin-bottom: 0px;
+  padding: 5px;
+} 
+
+.Tool .RightSide .Library .objects {
+ width:200px; 
+ margin-left: 40px; 
+ margin-top: 25px;
+} 
+.Tool .RightSide .Library .objects  img{
+ width: 85px; 
+ margin-right: 10px;
+ }  
+ .Tool .RightSide .Library .objects  img:active{
+  border: 1px solid gray;
+  } 
+ .Tool .RightSide .Library .choix{
+  display: inline-block;
+  border-color: rgb(230, 227, 227);  
+  border-style: solid;
+  border-width: 1px; 
+  color: rgb(87, 86, 86); 
+  border-radius: 3px;
+  width: 55px; 
+  margin-left: 5px;
+
+}
+.Tool .RightSide .Library .choix:hover{
+  background-color: rgb(219, 218, 218);
+}
+.Tool .RightSide .Library .Listes .List1 {
+  background-color: blue;
+  color: white;
+  margin-right: 30px;
+  margin-left: 10px;
+  padding: 15px;
+  display: inline-block;
+}
+
+.Tool .RightSide .Library .Listes .List2 {
+  background-color: rgb(236, 228, 228);
+  margin: 10px;
+  display: inline-block;
+}
+
+.Tool .RightSide .Library .Search {
+  margin: 20px 30px;
+  width: 220px;
+  padding: 5px; 
+  margin-bottom: 30px; 
+
+}
+
+.Tool .RightSide .Library .Search:focus {
+  outline-color: gray;
+}
+
+.Tool .RightSide .Scene {
+  background-color: rgb(234, 232, 232);
+  margin-left: 302px;
+  height: 625px;
+  position: fixed;
+  top: 50px;
+  width: 850px;
+}
+
+.Tool .RightSide .Palette { 
+
+  display: inline-block;
+  position: fixed;
+  top: 50px;
+  width: 300px;
+  margin-top: 5px;
+  height: 625px;
+  margin-left: 1150px;
+  border: 1px solid rgba(132, 133, 134, 0.15);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(132, 133, 134, 0.15);
+}
+.webgl {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  outline: none;
+}
+
+.card{
+  background-color: rgb(255, 255, 255);
+margin-left: 1230px;
+  border: 1px solid #b3b0b0; /* Border with color */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 230px; 
+  height: 800px; 
+ 
+  margin-top: 80px;
+  z-index: 1;
+  overflow-y: scroll;
+  max-height: 650px; 
+  
+ 
+}
+.container {
+  display: flex; /* Use flexbox layout for the container */
+  justify-content: space-between; /* Space the elements evenly within the container */
+  gap:10px;
+  align-items: center;
+}
+.input-group {
+  margin-bottom: 10px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  background-color: rgb(240, 239, 239);
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Align items vertically in the center */
+  width: 100px; /* Adjust the width based on your design */
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid #b3b0b0; /* Border with color */
+  
+}
+
+.input-group label {
+  margin-left: 5px; /* Add some spacing between label and input */
+}
+
+.input-group input {
+  flex:1;
+  background-color: rgb(240, 239, 239);
+  width:  50px;
+  height: 20px;
+  border-radius: 5px;
+  border: 0px solid rgb(240, 239, 239); /* Border with color */
+}
+
+
+
+.color-switch {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  padding: 2px;
+  width: 170px; /* Ajusté la largeur selon vos besoins */
+  
+}
+
+.color-picker-container input [type="color"] {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  
+}
+.real-color input[type="text"] {
+  cursor: pointer;
+  background-color: rgb(240, 239, 239);
+  width: 170px;
+  align-items: left;
+  display: flex;
+  border: 1px solid #b3b0b0; /* Border with color */
+}
+
+
+.color-picker-container label,
+.real-color label {
+  margin-top: 10px; /* Ajouté un espace en haut des labels */
+}
+
+
+
+.color-switch input[type="text"]:focus + .color-picker-container {
+  display: block; /* Afficher le colorPicker lorsqu'on clique sur l'input de référence */
+}
+
+.texture-thumbnails{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  
+}
+.texture-thumbnails img {
+  width: 65px; /* Définissez la largeur souhaitée, par exemple, 100 pixels */
+  height: auto; /* Assurez-vous que la hauteur est ajustée proportionnellement */
+}
+.material-thumbnails{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.material-thumbnails img{
+  width: 100px; /* Définissez la largeur souhaitée, par exemple, 100 pixels */
+  height: auto;
+  border: 1px solid #b3b0b0; /* Border with color */
+}
+.quantity-text {
+  margin-bottom: 10px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  background-color: rgb(240, 239, 239);
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Align items vertically in the center */
+  width: 100px; /* Adjust the width based on your design */
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #b3b0b0; /* Border with color */
+  
+}
+label {
+  margin-left: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-group label {
+  margin-bottom: 5px;
+}
+
+canvas.webgl {
+  display: block;
+}
+
+.zoom-buttons {
+  position: absolute;
+  top: 350px;
+  right :250px;
+  z-index: 1; /* Assure que les boutons sont au-dessus de la scène */
+  display: flex;
+  flex-direction: column;
+}
+
+.zoom-buttons button {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
