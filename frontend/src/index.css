@@ -1,373 +1,436 @@
-.Tool {
-  display: flex; /* Utilisation de flexbox pour le positionnement */
-}
-
-.Tool .LeftSide {
-  width: 65px;
-  height: 670px;
-  border: 1px solid rgba(132, 133, 134, 0.15);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(132, 133, 134, 0.15); 
-  z-index: 1; 
- margin-top: 40px; 
- background-color: white;
-}
-
-.Tool .LeftSide .Top {
-  display: inline-block;
-  height: 570px; 
-  z-index: 1; 
+html, body {
+  margin: 0;
+  height: 100%;
 } 
-.Tool .LeftSide .Top img {
- width: 50px;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-.Tool .LeftSide .Bottom {
-  display: inline-block;
-  margin-left: 20px; 
-  z-index: 1; 
-}
-
-.Tool .LeftSide .Bottom img {
-  display: block;
-  width: 25px;
-  height: 25px;
-  object-fit: cover;
-  border-radius: 30px;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-
-.Tool .LeftSide .Bottom FaCog {
-  display: block;
-  color: gray;
-}
-
-.Tool .RightSide {
-  display: inline-block;
-}
-
-.Tool .RightSide .Header {
-  position: fixed;
-  top: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(132, 133, 134, 0.15);
-  margin-top: 7px;
-  width: 100%;
-  margin-bottom: 0px; 
-  z-index: 1;  
-  background-color: white;
-}
-
-.Tool .RightSide .Header .Left {
-  display: inline-block;
-  margin-right: 750px;
-  margin-left: 40px;
-}
-
-.Tool .RightSide .Header .Left p {
-  display: inline-block;
-  font-size: 15px;
-  margin-left: 10px;
-}
-
-.Tool .RightSide .Header .Right {
-  display: inline-block;
-  margin-right: 50px; 
-  
-}
-
-.Tool .RightSide .Header .Right img {
-  width: 30px;
-  margin-right: 7px; 
-  align-items: center;
-}
-
-.Tool .RightSide .Header .Right input {
-  padding: 8px;
-  border: 1px solid rgb(132, 133, 134); /* Conservation de la couleur et de l'épaisseur de la bordure */
-  border-radius: 5px;
-}
-
-.Tool .RightSide .Header .Right button {
-  margin-left: 15px;
-  background-color: blue;
-  border: none;
-  color: white;
-  padding: 10px 14px;
-  font-size: 10px;
-  cursor: pointer;
-  border-radius: 5px; /* Ajout de bord arrondi */
-}
-
-.Tool .RightSide .Header .Right button:hover {
-  background-color: rgb(11, 140, 39);
-}
-
-
-.Tool .RightSide .Library {
-  display: inline-block;
-  position: fixed; 
-  background-color: white;
-  top: 50px;
-  width: 300px;
-  margin-top: 5px;
-  height: 625px;
-  border: 1px solid rgba(132, 133, 134, 0.15);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(132, 133, 134, 0.15); 
-  z-index: 1; 
-}
-
-.Tool .RightSide .Library .Listes {
-  background-color: rgb(236, 228, 228);
-margin-top: 15px;
-margin-right: 30px;
-margin-left: 30px;
-margin-bottom: 0px;
-  padding: 5px;
-} 
-
-.Tool .RightSide .Library .objects {
- width:200px; 
- margin-left: 40px; 
- margin-top: 25px;
-} 
-.Tool .RightSide .Library .objects  img{
- width: 85px; 
- margin-right: 10px;
- }  
- .Tool .RightSide .Library .objects  img:active{
-  border: 1px solid gray;
-  } 
- .Tool .RightSide .Library .choix{
-  display: inline-block;
-  border-color: rgb(230, 227, 227);  
-  border-style: solid;
-  border-width: 1px; 
-  color: rgb(87, 86, 86); 
-  border-radius: 3px;
-  width: 55px; 
-  margin-left: 5px;
-
-}
-.Tool .RightSide .Library .choix:hover{
-  background-color: rgb(219, 218, 218);
-}
-.Tool .RightSide .Library .Listes .List1 {
-  background-color: blue;
-  color: white;
-  margin-right: 30px;
-  margin-left: 10px;
-  padding: 15px;
-  display: inline-block;
-}
-
-.Tool .RightSide .Library .Listes .List2 {
-  background-color: rgb(236, 228, 228);
-  margin: 10px;
-  display: inline-block;
-}
-
-.Tool .RightSide .Library .Search {
-  margin: 20px 30px;
-  width: 220px;
-  padding: 5px; 
-  margin-bottom: 30px; 
-
-}
-
-.Tool .RightSide .Library .Search:focus {
-  outline-color: gray;
-}
-
-.Tool .RightSide .Scene {
-  background-color: rgb(234, 232, 232);
-  margin-left: 302px;
-  height: 625px;
-  position: fixed;
-  top: 50px;
-  width: 850px;
-}
-
-.Tool .RightSide .Palette { 
-
-  display: inline-block;
-  position: fixed;
-  top: 50px;
-  width: 300px;
-  margin-top: 5px;
-  height: 625px;
-  margin-left: 1150px;
-  border: 1px solid rgba(132, 133, 134, 0.15);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(132, 133, 134, 0.15);
-}
-.webgl {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  outline: none;
-}
-
-.card{
-  background-color: rgb(255, 255, 255);
-margin-left: 1230px;
-  border: 1px solid #b3b0b0; /* Border with color */
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 230px; 
-  height: 800px; 
+.Tool{ 
  
-  margin-top: 80px;
-  z-index: 1;
-  overflow-y: scroll;
-  max-height: 650px; 
+  display: grid; 
+ grid-template-columns: 70px 1fr; 
+ column-gap: 0px;
+} 
+
+/*leftside lazem narj3elha */
+.Tool .LeftSide{  
+
   
+  display: grid;
+  grid-template-rows: 50vh 50vh; 
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+
+}   
+
+.Tool .LeftSide .Logo img{ 
+  width: 86%; 
+  padding-left: 10%;
  
 }
-.container {
-  display: flex; /* Use flexbox layout for the container */
-  justify-content: space-between; /* Space the elements evenly within the container */
-  gap:10px;
-  align-items: center;
-}
-.input-group {
-  margin-bottom: 10px;
-  display: inline-flex;
-  flex-wrap: wrap;
-  background-color: rgb(240, 239, 239);
-  display: flex; /* Use flexbox layout */
-  align-items: center; /* Align items vertically in the center */
-  width: 100px; /* Adjust the width based on your design */
-  height: 25px;
-  border-radius: 5px;
-  border: 1px solid #b3b0b0; /* Border with color */
+
+
+.Tool .LeftSide .Profil-Settings {
+
+  position: relative; 
+ 
+  padding-left: 30%; 
   
-}
-
-.input-group label {
-  margin-left: 5px; /* Add some spacing between label and input */
-}
-
-.input-group input {
-  flex:1;
-  background-color: rgb(240, 239, 239);
-  width:  50px;
-  height: 20px;
-  border-radius: 5px;
-  border: 0px solid rgb(240, 239, 239); /* Border with color */
-}
-
-
-
-.color-switch {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-  padding: 2px;
-  width: 170px; /* Ajusté la largeur selon vos besoins */
-  
-}
-
-.color-picker-container input [type="color"] {
-  display: flex;
-  flex-direction: column;
-  align-items: right;
-  
-}
-.real-color input[type="text"] {
-  cursor: pointer;
-  background-color: rgb(240, 239, 239);
-  width: 170px;
-  align-items: left;
-  display: flex;
-  border: 1px solid #b3b0b0; /* Border with color */
-}
-
-
-.color-picker-container label,
-.real-color label {
-  margin-top: 10px; /* Ajouté un espace en haut des labels */
-}
-
-
-
-.color-switch input[type="text"]:focus + .color-picker-container {
-  display: block; /* Afficher le colorPicker lorsqu'on clique sur l'input de référence */
-}
-
-.texture-thumbnails{
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  
-}
-.texture-thumbnails img {
-  width: 65px; /* Définissez la largeur souhaitée, par exemple, 100 pixels */
-  height: auto; /* Assurez-vous que la hauteur est ajustée proportionnellement */
-}
-.material-thumbnails{
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.material-thumbnails img{
-  width: 100px; /* Définissez la largeur souhaitée, par exemple, 100 pixels */
-  height: auto;
-  border: 1px solid #b3b0b0; /* Border with color */
-}
-.quantity-text {
-  margin-bottom: 10px;
-  display: inline-flex;
-  flex-wrap: wrap;
-  background-color: rgb(240, 239, 239);
-  display: flex; /* Use flexbox layout */
-  align-items: center; /* Align items vertically in the center */
-  width: 100px; /* Adjust the width based on your design */
-  height: 40px;
-  border-radius: 5px;
-  border: 1px solid #b3b0b0; /* Border with color */
-  
-}
-label {
-  margin-left: 5px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-button {
-  margin-right: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.radio-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.radio-group label {
-  margin-bottom: 5px;
-}
-
-canvas.webgl {
-  display: block;
-}
-
-.zoom-buttons {
+} 
+.Tool .LeftSide .Profil-Settings .Container img{
+  width: 30%; 
+ object-fit: cover; 
+  object-position: center; 
   position: absolute;
-  top: 350px;
-  right :250px;
-  z-index: 1; /* Assure que les boutons sont au-dessus de la scène */
-  display: flex;
-  flex-direction: column;
+  bottom: 0; 
+  border-radius: 100%;  
+  margin-bottom: 30%;
+
+} 
+
+.Tool .LeftSide .Profil-Settings .Container .FaCog {
+  position: absolute;
+  top: 75%; 
+  left: 30%;  
+  color: rgb(24, 53, 172); 
+ 
+ 
+
+} 
+/*Rightside*/
+
+.RightSide{ 
+  display: grid;
+  grid-template-rows: 65px 1fr; 
+  
+ 
+}  
+
+
+.RightSide .Header {
+
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+ 
+  display: grid; 
+  grid-template-columns: 1.6fr 1fr; 
+  
+}   
+
+
+.RightSide .Header .Left{ 
+  width: 50%; 
+  margin-top: 1%;
+position: relative;
+top: 1;
+  margin-left: 2%;
+
+
+}  
+
+
+
+.RightSide .Header .Left p{
+  display: inline-block;  
+  font-weight: 500; 
+  font-size: 100%; 
+  margin-right: 10%;
+ 
+}  
+
+
+.RightSide .Header .Right{  
+align-content: center;
+
+
+ 
+}  
+/* import label design*/
+
+.RightSide .Header .Right .First-container{ 
+width: 35%; 
+display: inline; 
+margin-left: 15%; 
+margin-right: 2%; 
+
+
+}
+.RightSide .Header .Right  .First-container .Design{ 
+display: inline-block; 
+background: rgba(238, 239, 243, 1);
+width: 20%;
+padding: 0.5% 3% 0.5% 3%; 
+border-radius: 5%;
+ 
+
+}    
+.RightSide .Header .Right  .First-container .Design:hover{
+  background-color: rgb(212, 208, 208);
 }
 
-.zoom-buttons button {
-  margin-bottom: 10px;
-  padding: 5px 10px;
-  cursor: pointer;
+.RightSide .Header .Right  .First-container .Design p{
+   display: inline-block; 
+   font-size: 65%;  
+   margin-right: 5%; 
+   
+} 
+/* controbutors*/
+.RightSide .Header .Right  .Second-container   {  
+  width: 25%; 
+  display: inline-block ; 
+  margin-top: 1%;
+  align-content: center;
+  
+  
+} 
+.RightSide .Header .Right  .Second-container .Controbutors   {  
+  
+  display: inline-block ; 
+
+  
+}  
+
+.RightSide .Header .Right  .Second-container .Controbutors img{
+  width: 18%;  
+  margin-right: 5%;
+  margin-left: 5%;
+} 
+
+
+
+.RightSide .Header .Right  .Publish{
+  background-color: rgb(174, 174, 203);   
+  display: inline-block;
+
 }
+.RightSide .Header .Right .Publish button {
+  background: linear-gradient(106.79deg, rgba(65, 48, 188, 1) -13.72%, rgba(106, 176, 250, 1) 108.14%);
+  padding: 30% 45% 30% 45%;
+  color: white;
+  border: none;
+  cursor: pointer; 
+  transition: background-color 0.3s; 
+}
+
+.RightSide .Header .Right  .Publish button:hover{
+  background: linear-gradient(106.79deg, rgb(59, 183, 71) -13.72%, rgb(15, 105, 31) 108.14%);
+  
+} 
+
+/* Bottom*/
+.Main{
+
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr; 
+  
+}  
+
+.Main .Library{ 
+box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  display: grid; 
+  grid-template-rows: 10% 7% 7% 55% 20%;
+} 
+.Main .Library .Head { 
+  margin: 3%;
+  background: rgba(238, 239, 243, 1);
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  padding: 1.5%;
+ 
+} 
+.Main .Library .Head .Internal{ 
+  background: rgba(238, 239, 243, 1);
+ align-content: center; 
+ padding-left: 30% ; 
+ color: rgba(65, 48, 188, 1);
+
+} 
+.Main .Library .Head .External{ 
+  background: linear-gradient(106.79deg, rgba(65, 48, 188, 1) -13.72%, rgba(106, 176, 250, 1) 108.14%);
+  color: rgba(238, 239, 243, 1);
+  align-content: center; 
+  padding-left: 30% ; 
+
+}  
+
+
+.Main .Library .Search{ 
+  
+  margin-top: 6%; 
+   align-content: center; 
+  padding-left: 8% ; 
+  padding-right: 8%; 
+ 
+
+} 
+.Main .Library .Search input{
+  width: 100%; 
+  height: 100%;
+} 
+.Main .Library .Choix{ 
+  margin-top: 10%; 
+  font-size: 80%;
+  color: gray;
+  margin-left: 5%;
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}  
+.Main .Library .Choix div{
+  border-radius: 10%; 
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(233, 234, 236) 0px 0px 0px 1px inset;
+  padding: 3%; 
+  margin-right: 5%; 
+  text-align: center; 
+  width: 80%; 
+  transition: border 0.1s;
+} 
+.Main .Library .Choix div:hover{ 
+  border-color: gray;
+  border-style: solid;
+border-width: 1px;
+} 
+
+.Main .Library .Packaging{ 
+  margin-top: 10%; 
+ margin-left: 15%;
+  display: grid; 
+  grid-template-columns: 1fr 1fr;
+} 
+
+.Main .Library .Packaging img{
+  margin-bottom: 12%;
+}   
+.Main .Library .Packaging img:hover{
+  border-color: gray; 
+  border-width: 1px; 
+  border-style: solid;
+}
+.Main .Library .Other-lists{
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;  
+ margin-top: 10%;
+ margin-left: 5%;
+
+} 
+.Main .Library .Other-lists div p  {   
+  font-family: Arial;
+font-weight: 500; 
+font-size: 90%;
+  display: inline;
+  margin-right: 70%;
+}
+.Scene{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset; 
+
+  background-color:rgba(250, 250, 251, 1);
+} 
+.Palette{ 
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset; 
+  display: grid; 
+  grid-template-rows: 2fr 1.5fr 3fr 3fr 6fr 6fr 2fr ; 
+  padding-left: 5%; 
+  padding-right: 5%; 
+ 
+  overflow-y: auto; 
+  overflow-x: hidden;
+  max-height: 630px; 
+  scrollbar-width: thin;
+ 
+}   
+.Palette .Size{
+  
+} 
+
+.Palette .Size p{
+  font-weight: 500; 
+  margin-bottom: 5%;
+} 
+.Palette .Size input{
+  width: 40%; 
+  background-color:rgba(250, 250, 251, 1)  ; 
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border: none; 
+  margin-bottom: 2%;
+  margin-right: 2%; 
+ } 
+ .Palette .Color{
+ 
+ } 
+ .Palette .Color p{
+  font-weight: 500; 
+  margin-bottom: 5%;
+ }  
+ .Palette .Color div{
+  background-color:rgba(250, 250, 251, 1)  ; 
+ 
+  padding: 1.5%; 
+  margin-right: 5%;
+ }
+ .Palette .Color input{
+  width: 15%;
+ }
+ .Palette .Texture{
+ 
+ }
+.Palette .Texture p{ 
+  font-weight: 500; 
+  margin-bottom: 5%;
+
+} 
+.Palette .Texture img{
+  width: 30%;  
+  margin-right: 1%;
+  
+} 
+
+.Palette .Texture img:hover{ 
+  border-color: gray; 
+  border-width: 1px; 
+  border-style: solid;
+
+} 
+.Palette .Material{
+  
+} 
+.Palette .Material p{ 
+  font-weight: 500; 
+  margin-bottom: 5%;
+} 
+
+.Palette .Material img{
+  width: 40%; 
+  margin-right: 2%;
+} 
+
+.Palette .Material img:hover{ 
+  border-color: gray; 
+  border-width: 1px; 
+  border-style: solid;
+
+}   
+
+.Palette .Quantity p{ 
+  font-weight: 500; 
+  margin-bottom: 5%;
+
+} 
+.Palette .Quantity .List-price{
+
+} 
+.Palette .Quantity .List-price div{
+  background-color: rgba(250, 250, 251, 1); 
+  margin-bottom: 5%; 
+width: 40%;  
+display: inline-block;
+
+
+}  
+.Palette .Quantity .List-price div .Number{
+  color: rgba(65, 48, 188, 1) ;
+}
+.Palette .Quantity  input{ 
+  width: 100%; 
+  color: gray;
+} 
+
+.Palette .Preview p{
+  font-weight: 500; 
+  margin-bottom: 5%;
+} 
+.Palette .Preview div{
+  background-color: rgba(250, 250, 251, 1); 
+  height: 40%;
+} 
+
+.Palette .Export{
+  margin-bottom: 30%;
+}
+.Palette .Export p{
+  font-weight: 500; 
+  margin-bottom: 5%;
+}
+
+.Palette .Export button{
+  background: linear-gradient(106.79deg, rgba(65, 48, 188, 1) -13.72%, rgba(106, 176, 250, 1) 108.14%);
+  color: rgba(250, 250, 251, 1); 
+  width: 100%; 
+  height: 40%; 
+  border: none; 
+  margin-top: 10% ;
+}
+.Palette .Export button:hover{
+  background: linear-gradient(106.79deg, rgb(59, 183, 71) -13.72%, rgb(15, 105, 31) 108.14%);
+}
+  
+
+
+
+.Scene {
+width: 100%; 
+height: 100%; 
+display: inline-block; 
+background-color: rgb(233, 232, 232);
+}
+
 
