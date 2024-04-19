@@ -9,7 +9,8 @@ function Header() {
       <div className="Left"> 
         <FaArrowLeft className="fa-2xl" style={{width:'10%',color:'rgba(65, 48, 188, 1)'}} />
         <p className="Titre">Tool de conception d'emballage</p>
-      </div> 
+      </div>  
+
       <div className="Right">  
         <div className="First-container"> 
           <div className="Design">

@@ -1,6 +1,6 @@
 
 import Library  from "./Library";
-import Palette from "./Palette"; 
+import {Palette} from "./Palette"; 
 import Scene from "./Scene";
 function Main(){
   return(

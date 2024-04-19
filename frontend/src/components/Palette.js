@@ -7,7 +7,8 @@ import texture5 from '../assets/texture5.jpg';
 import texture6 from '../assets/texture6.jpg';
 import carton from'../assets/carton.jpg';
 import blanc from '../assets/blancjpg.jpg';
-function Palette() {
+import { FaCompress, FaDownload, FaExpand, FaFile, FaMinus, FaPlus, FaRuler,FaSyncAlt,FaTrash } from 'react-icons/fa';
+export function Palette() {
   return( 
     <div className="Palette">   
       <div className="Size"> 
@@ -64,4 +65,37 @@ function Palette() {
   );
 } 
 
-export default Palette;
+
+
+
+ export function TopSmallPalette(){
+  return(
+  <div className='TopSmallPalette'>  
+   <FaFile style={{width:'30%',color:'rgba(65, 48, 188, 1)'}}/>
+   <FaTrash style={{width:'30%',color:'rgba(65, 48, 188, 1)'}}/>
+   <FaRuler style={{width:'30%',color:'rgba(65, 48, 188, 1)'}}/>  
+   
+
+
+  </div>
+  );
+} 
+
+
+
+export function BottomSmallPalete(){
+  return(
+<div className='BottomSmallPalette'>  
+<FaMinus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/> 
+<FaPlus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/> 
+<FaSyncAlt style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/>
+<FaDownload style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/>  
+
+
+
+
+
+</div>);
+}
+
+
