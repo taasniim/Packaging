@@ -460,6 +460,13 @@ background-color:rgba(238, 239, 243, 1);
   
 } 
 
-.Scene.RealScene{
+.Scene.RealScene{ 
+  width: 300px;
+  height: 300px; 
+  border-width: 1px;
+  border-color: blue;
+  border-style: solid; 
+  background-color: antiquewhite;
+
   
 }

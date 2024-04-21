@@ -1,7 +1,9 @@
 import React from 'react';
 import object1 from '../assets/object1.png'; 
 import object2 from '../assets/object2.png';
-import object3 from '../assets/object3.png';
+import Package from './Package';
+import object3 from '../assets/object3.png'; 
+import mockupList from '../data/mockup';
 
 function Library() {
   return (
@@ -24,16 +26,18 @@ function Library() {
 
       <div className="Packaging"> 
         <div className="First-column">  
-          <img src={object1} alt="Object 1" /> 
-          <img src={object2} alt="Object 2" />  
-          <img src={object1} alt="Object 1" /> 
-          <img src={object2} alt="Object 2" /> 
+        {
+          mockupList.map((mockup)=>  {
+            return <Package src={mockup.src} id={mockup.id}/>
+          })
+        }
         </div> 
         <div className="Second-column">  
-          <img src={object2} alt="Object 2" />
-          <img src={object1} alt="Object 1" /> 
-          <img src={object2} alt="Object 2" /> 
-          <img src={object2} alt="Object 2" />
+        {
+          mockupList.map((mockup)=>  {
+            return <Package src={mockup.src} id={mockup.id}/>
+          })
+        }
         </div>
       </div>  
 

@@ -2,6 +2,10 @@ import React from 'react';
 import { FaArrowLeft, FaPlus, FaAngleLeft, FaAngleRight, FaImage } from 'react-icons/fa';
 import firstParticipant from '../assets/firstParticipant.jpg';
 import secondParticipant from '../assets/second-participant.jpg';
+import Button from '@mui/material/Button'; 
+import ImageIcon from '@mui/icons-material/Image'; 
+
+import Box from '@mui/material/Box';
 
 function Header() {
   return (
@@ -12,11 +16,20 @@ function Header() {
       </div>  
 
       <div className="Right">  
-        <div className="First-container"> 
-          <div className="Design">
-            <FaImage  style={{color:'rgba(65, 48, 188, 1)' }}/>
-            <p>import Label design </p>
-          </div> 
+        <div className="First-container">  
+        
+        <Button
+       component="label"
+      role={undefined}
+      variant="contained"
+      tabIndex={-1}
+      startIcon={<ImageIcon sx={{color:'rgba(65, 48, 188, 1)'}} />} 
+      sx={{bgcolor:'rgba(238, 239, 243, 1)',color:'black',textTransform:'none','&:hover':{bgcolor:' rgb(212, 208, 208)',cursor:'pointer'}}} >
+  import label design
+  <Box sx={{ position: 'absolute',width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)', '&:focus': { outline: 'auto' } }}>
+    <input type="file" />
+  </Box>
+</Button>
         </div>
         
         <div className="Second-container">   
