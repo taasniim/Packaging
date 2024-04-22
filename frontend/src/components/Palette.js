@@ -7,7 +7,12 @@ import texture5 from '../assets/texture5.jpg';
 import texture6 from '../assets/texture6.jpg';
 import carton from'../assets/carton.jpg';
 import blanc from '../assets/blancjpg.jpg';
-import { FaCompress, FaDownload, FaExpand, FaFile, FaMinus, FaPlus, FaRuler,FaSyncAlt,FaTrash } from 'react-icons/fa';
+import { FaCompress, FaDownload, FaExpand, FaFile, FaMinus, FaPlus, FaRuler,FaSyncAlt,FaTrash } from 'react-icons/fa'; 
+import { Slider } from '@mui/material';
+import Box from '@mui/material/Box'; 
+import IconButton from '@mui/material/IconButton'; 
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 export function Palette() {
   return( 
     <div className="Palette">   
@@ -96,6 +101,41 @@ export function BottomSmallPalete(){
 
 
 </div>);
+} 
+
+export function RightSmallPalette(){ 
+  function preventHorizontalKeyboardNavigation(event) {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+    }
+  }
+  return (
+    <div className='RightSmammPalette'>  
+    <Box sx={{height:"25%",position: "absolute",
+  right: 0,marginRight:"17%",display:"flex",flexDirection:"column",alignItems:"center"}}> 
+  <IconButton aria-label="zoomin">
+        <AddIcon/>
+      </IconButton> 
+      <IconButton aria-label="zoomout">
+        <RemoveIcon/>
+      </IconButton>
+    <Slider
+  sx={{
+    '& input[type="range"]': {
+      WebkitAppearance: 'slider-vertical',
+    },
+    color:"gray"
+  }}
+  orientation="vertical"
+  defaultValue={30}
+  aria-label="Temperature"
+  valueLabelDisplay="auto"
+  onKeyDown={preventHorizontalKeyboardNavigation}
+/> 
+</Box> 
+
+    </div>
+  )
 }
 
 

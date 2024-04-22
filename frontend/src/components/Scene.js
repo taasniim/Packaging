@@ -1,6 +1,6 @@
 import React, { useRef, useEffect , useState} from "react";
 import * as THREE from "three";
-import { TopSmallPalette,BottomSmallPalete } from "./Palette"; 
+import { TopSmallPalette,BottomSmallPalete,RightSmallPalette } from "./Palette"; 
 import { useDrop } from "react-dnd";
 import mockupList from "../data/mockup";
 import Package from "./Package";
@@ -21,7 +21,8 @@ const Scene = () => {
  return(
   <div className="Scene">  
   <TopSmallPalette/>  
-  < div className="RealScene" ref={drop} style={{width:"100%",height:"80%",alignContent:"center"}}>
+  <RightSmallPalette/>
+  < div className="RealScene" ref={drop} style={{ width:"95%",height:"80%",alignContent:"center"}}>
 
   {scene.map((mockup)=>{
       return (
@@ -37,6 +38,7 @@ const Scene = () => {
     </div>
     
   <BottomSmallPalete/>
+
   </div>
  );
   };
