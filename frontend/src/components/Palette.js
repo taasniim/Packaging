@@ -110,7 +110,7 @@ export function RightSmallPalette(){
     }
   }
   return (
-    <div className='RightSmammPalette'>  
+    <div className='RightSmallPalette'>  
     <Box sx={{height:"25%",position: "absolute",
   right: 0,marginRight:"17%",display:"flex",flexDirection:"column",alignItems:"center"}}> 
   <IconButton aria-label="zoomin">
