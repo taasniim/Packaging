@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton'; 
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+
 export function Palette() {
   return( 
     <div className="Palette">   
@@ -80,8 +81,6 @@ export function Palette() {
    <FaTrash style={{width:'30%',color:'rgba(65, 48, 188, 1)'}}/>
    <FaRuler style={{width:'30%',color:'rgba(65, 48, 188, 1)'}}/>  
    
-
-
   </div>
   );
 } 
@@ -127,8 +126,8 @@ export function RightSmallPalette(){
     color:"gray"
   }}
   orientation="vertical"
-  defaultValue={30}
-  aria-label="Temperature"
+  defaultValue={0}
+  aria-label="open-mockup"
   valueLabelDisplay="auto"
   onKeyDown={preventHorizontalKeyboardNavigation}
 /> 

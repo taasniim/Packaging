@@ -11,7 +11,7 @@ collect:(monitor)=>({
     <img 
     src={src} 
     ref={drag} 
-    style={{border:isDragging?"2px solid blue":"0px"}}
+    style={{border:isDragging?"2px solid gray":"0px"}}
     />
   );
 } 

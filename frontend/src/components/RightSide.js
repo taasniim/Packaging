@@ -9,9 +9,6 @@ function RightSide(){
       <Header/> 
       <Main/> 
     
-     
-
-      
     </div>
   )
 } 
