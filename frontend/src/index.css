@@ -471,7 +471,5 @@ background-color:rgba(238, 239, 243, 1);
   
 }
 .Scene .RightSmallPalette{
-  position: absolute;
-  left: 0; 
-  margin-left: 100px;
+ 
 }
