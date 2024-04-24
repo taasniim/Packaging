@@ -4,7 +4,9 @@ import { TopSmallPalette,BottomSmallPalete,RightSmallPalette } from "./Palette";
 import { useDrop } from "react-dnd";
 import mockupList from "../data/mockup";
 import Package from "./Package";
-import { Mockup3DCube } from "./LoadingMockup";
+import { Mockup3DBox,LoadingMockup} from "./LoadingMockup";
+import { Canvas } from "@react-three/fiber"; 
+import { OrbitControls } from "@react-three/drei";
 const Scene = () => { 
   const [scene,setScene]=useState([]);
   const [{isOver},drop]=useDrop(()=>({
@@ -26,20 +28,13 @@ const Scene = () => {
   < div className="RealScene" ref={drop} style={{ width:"95%",height:"80%",alignContent:"center"}}>
 
   {scene.map((mockup)=>{ 
-    if (mockup.id%2===0){
-      return (
-        <React.Fragment key={mockup.id} >
-      <Mockup3DCube color={mockup.color} x={mockup.x} y={mockup.y} z={mockup.z} />
-      </React.Fragment>
-  );}
-  else{
+   
     return (
       <React.Fragment key={mockup.id} >
-    <Package src={mockup.src} id={mockup.id} />
-    <input type="color"/> 
+     <LoadingMockup/>
     </React.Fragment>
 );
-  }
+  
       
 
     })} 
