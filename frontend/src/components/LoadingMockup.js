@@ -3,7 +3,7 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 
 
-function Mockup3D({color,x,y,z}) { 
+export function Mockup3DCube({color,x,y,z}) { 
   return(
     <div className="Mockup3D"> 
     <Canvas>
@@ -23,4 +23,4 @@ function Mockup3D({color,x,y,z}) {
   
 }
 
-export default Mockup3D;
+

@@ -4,7 +4,7 @@ import { TopSmallPalette,BottomSmallPalete,RightSmallPalette } from "./Palette";
 import { useDrop } from "react-dnd";
 import mockupList from "../data/mockup";
 import Package from "./Package";
-import Mockup3D from "./LoadingMockup";
+import { Mockup3DCube } from "./LoadingMockup";
 const Scene = () => { 
   const [scene,setScene]=useState([]);
   const [{isOver},drop]=useDrop(()=>({
@@ -29,7 +29,7 @@ const Scene = () => {
     if (mockup.id%2===0){
       return (
         <React.Fragment key={mockup.id} >
-      <Mockup3D color={mockup.color} x={mockup.x} y={mockup.y} z={mockup.z} />
+      <Mockup3DCube color={mockup.color} x={mockup.x} y={mockup.y} z={mockup.z} />
       </React.Fragment>
   );}
   else{
