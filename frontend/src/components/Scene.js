@@ -19,11 +19,14 @@ const Scene = () => {
   const addMocupToScene=(id)=>{
     const mockuplist=mockupList.filter((onemockup)=>id===onemockup.id);
     setScene([mockuplist[0]])
+  } 
+  const clearForm=()=>{
+    setScene([]);
   }
   
  return(
   <div className="Scene">  
-  <TopSmallPalette/>  
+  <TopSmallPalette onDelete={clearForm}/>  
   <RightSmallPalette/>
   < div className="RealScene" ref={drop} style={{ width:"95%",height:"80%",alignContent:"center"}}>
 
@@ -32,6 +35,7 @@ const Scene = () => {
     return (
       <React.Fragment key={mockup.id} >
      <LoadingMockup/>
+
     </React.Fragment>
 );
   

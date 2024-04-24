@@ -74,11 +74,11 @@ export function Palette() {
 
 
 
- export function TopSmallPalette(){
+ export function TopSmallPalette({onDelete}){
   return(
   <div className='TopSmallPalette'>  
    <FaFile style={{width:'30%',color:'rgba(65, 48, 188, 1)'}}/>
-   <FaTrash style={{width:'30%',color:'rgba(65, 48, 188, 1)'}}/>
+   <FaTrash style={{width:'30%',color:'rgba(65, 48, 188, 1)'}} onClick={onDelete}/>
    <FaRuler style={{width:'30%',color:'rgba(65, 48, 188, 1)'}}/>  
    
   </div>
