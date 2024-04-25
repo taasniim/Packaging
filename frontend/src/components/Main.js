@@ -3,13 +3,19 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import Library  from "./Library";
 import {Palette} from "./Palette"; 
 import Scene from "./Scene";
-function Main(){
+import { useState } from "react";
+function Main(){ 
+  const [color, setColor] = useState("#000000");
+
+  const handleColorChange = (color) => {
+    setColor(color);
+  };
   return( 
     <DndProvider backend={HTML5Backend}>
 <div className="Main"> 
 <Library/> 
-<Scene/>
-<Palette/>
+<Scene color={color}/>
+<Palette onColorChange={handleColorChange}/>
 
 </div> 
 </DndProvider>

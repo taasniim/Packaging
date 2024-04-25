@@ -13,8 +13,17 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton'; 
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { useState } from 'react';
+import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
+import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 
-export function Palette() {
+export function Palette({onColorChange}) { 
+  const [color, setColor] = useState("#000000");
+  const handleColor=(event)=>{
+    const newcolor = event.target.value;
+    setColor(newcolor);
+    onColorChange(newcolor);
+  }
   return( 
     <div className="Palette">   
       <div className="Size"> 
@@ -26,7 +35,7 @@ export function Palette() {
       </div> 
       <div className="Color">  
         <p>Color</p>  
-        <div><input type="color" name="" id="" /></div>
+        <div><input type="color" name="" id="" value={color} onChange={handleColor}/></div>
       </div> 
       <div className="Texture"> 
         <p>Texture</p> 
@@ -90,9 +99,17 @@ export function Palette() {
 export function BottomSmallPalete(){
   return(
 <div className='BottomSmallPalette'>  
+<FaSyncAlt style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/>
 <FaMinus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/> 
 <FaPlus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/> 
-<FaSyncAlt style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/>
+
+<IconButton aria-label="zoomout">
+        <ThreeDRotationIcon  sx={{color:'rgba(65, 48, 188, 1)'}}/>
+      </IconButton>
+
+      <IconButton aria-label="zoomout">
+        <LooksTwoIcon  sx={{color:'rgba(65, 48, 188, 1)'}}/>
+      </IconButton>
 <FaDownload style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/>  
 
 

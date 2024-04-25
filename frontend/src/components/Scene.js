@@ -6,9 +6,12 @@ import mockupList from "../data/mockup";
 import Package from "./Package";
 import { Mockup3DBox,LoadingMockup} from "./LoadingMockup";
 import { Canvas } from "@react-three/fiber"; 
-import { OrbitControls } from "@react-three/drei";
-const Scene = () => { 
-  const [scene,setScene]=useState([]);
+import { OrbitControls } from "@react-three/drei"; 
+import { Palette } from "./Palette";
+const Scene = ({color}) => { 
+  const [scene,setScene]=useState([]); 
+ 
+  
   const [{isOver},drop]=useDrop(()=>({
     accept:"image",
     drop:(item)=>addMocupToScene(item.id),
@@ -22,8 +25,9 @@ const Scene = () => {
   } 
   const clearScene=()=>{
     setScene([]);
-  }
-  
+  } 
+
+
  return(
   <div className="Scene">  
   <TopSmallPalette onDelete={clearScene}/>  
@@ -34,7 +38,7 @@ const Scene = () => {
    
     return (
       <React.Fragment key={mockup.id} >
-     <LoadingMockup/>
+     <LoadingMockup color={color} />
     </React.Fragment>
 );
   
