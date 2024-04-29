@@ -96,14 +96,14 @@ export function Palette({onColorChange}) {
 
 
 
-export function BottomSmallPalete(){
+export function BottomSmallPalete({zoomin,zoomout}){
   return(
 <div className='BottomSmallPalette'>  
 <FaSyncAlt style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/>
-<FaMinus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/> 
-<FaPlus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/> 
+<FaMinus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}} onClick={zoomout}/> 
+<FaPlus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}} onClick={zoomin}/> 
 
-<IconButton aria-label="zoomout">
+<IconButton aria-label="zoomout" >
         <ThreeDRotationIcon  sx={{color:'rgba(65, 48, 188, 1)'}}/>
       </IconButton>
 

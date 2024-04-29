@@ -27,7 +27,8 @@ const Scene = ({ color }) => {
     console.log(id);
   };
 
-  const clearScene = () => {
+  const clearScene = () => { 
+   
     setScene(null);
   }; 
   const Zoomin=()=>{
@@ -54,7 +55,7 @@ const Scene = ({ color }) => {
            }
         </Canvas>
       </div>
-      <BottomSmallPalete />
+      <BottomSmallPalete zoomin={Zoomin} zoomout={Zoomout} />
     </div>
   );
 };
