@@ -9,7 +9,7 @@ import { Box } from "@react-three/drei";
 
 const Scene = ({ color }) => {
   const [scene, setScene] = useState(null);
-
+  const [scale,setScale]=useState(1);
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "image",
     drop: (item) => addMocupToScene(item.id), 
@@ -29,12 +29,18 @@ const Scene = ({ color }) => {
 
   const clearScene = () => {
     setScene(null);
-  };
+  }; 
+  const Zoomin=()=>{
+    setScale(scale*1.1)
+  } 
+  const Zoomout=()=>{
+    setScale(scale/1.1)
+  }
 
   return (
     <div className="Scene">
       <TopSmallPalette onDelete={clearScene} />
-      <RightSmallPalette />
+      <RightSmallPalette zoomin={Zoomin} zoomout={Zoomout}/>
       <div className="RealScene" ref={drop} style={{ width: "95%", height: "80%", alignContent: "center" }}>
         <Canvas camera={{ position: [0, 0, 5] }}>
          
@@ -42,9 +48,9 @@ const Scene = ({ color }) => {
           <pointLight position={[10, 10, 10]} />
           <OrbitControls />
           {  
-          scene &&  <Mockup color={color}/>} 
+          scene &&  <Mockup color={color} scale={scale}/>} 
            {
-            console.log(color)
+            console.log(scale)
            }
         </Canvas>
       </div>

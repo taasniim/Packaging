@@ -119,7 +119,7 @@ export function BottomSmallPalete(){
 </div>);
 } 
 
-export function RightSmallPalette(){ 
+export function RightSmallPalette({zoomin,zoomout}){ 
   function preventHorizontalKeyboardNavigation(event) {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
@@ -129,10 +129,10 @@ export function RightSmallPalette(){
     <div className='RightSmallPalette'>  
     <Box sx={{height:"25%",position: "absolute",
   right: 0,marginRight:"17%",display:"flex",flexDirection:"column",alignItems:"center"}}> 
-  <IconButton aria-label="zoomin">
+  <IconButton aria-label="zoomin" onClick={zoomin}>
         <AddIcon/>
       </IconButton> 
-      <IconButton aria-label="zoomout">
+      <IconButton aria-label="zoomout" onClick={zoomout}>
         <RemoveIcon/>
       </IconButton>
     <Slider
