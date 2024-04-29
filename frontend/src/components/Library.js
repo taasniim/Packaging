@@ -27,15 +27,17 @@ function Library() {
       <div className="Packaging"> 
         <div className="First-column">  
         {
-          mockupList.map((mockup)=>  {
-            return <Package src={mockup.src} id={mockup.id}/>
+          mockupList.map((mockup)=>  { 
+            if (mockup.id %2===0){
+            return <Package src={mockup.src} id={mockup.id}/>}
           })
         }
         </div> 
         <div className="Second-column">  
         {
-          mockupList.map((mockup)=>  {
-            return <Package src={mockup.src} id={mockup.id}/>
+          mockupList.map((mockup)=>  { 
+            if (mockup.id %2!==0){
+            return <Package src={mockup.src} id={mockup.id}/>}
           })
         }
         </div>
