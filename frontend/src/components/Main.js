@@ -5,7 +5,7 @@ import {Palette} from "./Palette";
 import Scene from "./Scene";
 import { useState } from "react";
 function Main(){ 
-  const [color, setColor] = useState("#000000");
+  const [color, setColor] = useState("#898080");
 
   const handleColorChange = (color) => {
     setColor(color);

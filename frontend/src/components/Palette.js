@@ -18,7 +18,7 @@ import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 
 export function Palette({onColorChange}) { 
-  const [color, setColor] = useState("#000000");
+  const [color, setColor] = useState("#898080");
   const handleColor=(event)=>{
     const newcolor = event.target.value;
     setColor(newcolor);

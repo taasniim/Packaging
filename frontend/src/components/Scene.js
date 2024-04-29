@@ -42,8 +42,10 @@ const Scene = ({ color }) => {
           <pointLight position={[10, 10, 10]} />
           <OrbitControls />
           {  
-          scene &&  <Mockup/>} 
-           
+          scene &&  <Mockup color={color}/>} 
+           {
+            console.log(color)
+           }
         </Canvas>
       </div>
       <BottomSmallPalete />
