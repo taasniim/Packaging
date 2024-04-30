@@ -20,7 +20,8 @@ import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import { Mockup } from './LoadingMockup';
 
-export function Palette({onColorChange , onTextureChange,onSizechange }) { 
+
+export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange}) { 
   const [color, setColor] = useState("#898080"); 
   const [scale,setScale]=useState([1,1,1])
   
@@ -56,6 +57,7 @@ export function Palette({onColorChange , onTextureChange,onSizechange }) {
 
 }
     
+
 const handleColor=(event)=>{
     const newcolor = event.target.value;
     setColor(newcolor);
@@ -66,7 +68,10 @@ const handleColor=(event)=>{
     onTextureChange(newTexture);
   };
 
-
+  //----------
+  const handleMaterialChange =(newMaterialType) =>{
+    onMaterialChange( newMaterialType);
+  }
 
 
   return( 
@@ -94,8 +99,8 @@ const handleColor=(event)=>{
       </div> 
       <div className="Material"> 
         <p>Material</p> 
-        <img src={blanc} alt="" /> 
-        <img src={carton} alt="" />
+        <img src={blanc} alt="" onClick={()=>handleMaterialChange(blanc)} /> 
+        <img src={carton} alt="" onClick={()=>handleMaterialChange(carton)} />
       </div> 
       <div className="Quantity"> 
         <p>Quantity</p>  

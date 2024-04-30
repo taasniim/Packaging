@@ -8,7 +8,9 @@ import { TopSmallPalette, BottomSmallPalete, RightSmallPalette } from "./Palette
 
 
 
-const Scene = ({ color ,texture ,size}) => {
+
+const Scene = ({ color ,texture ,size , materialType}) => {
+
   const [scene, setScene] = useState(null);
   const [scale,setScale]=useState(size); 
 const [rotaionX,setRotationX]=useState(0); 
@@ -65,9 +67,11 @@ console.log("hello size scene",size);
           <OrbitControls />
           
           {  
-          scene &&  <Mockup color={color} scale={scale} rotationX={rotaionX} texture={texture} />} 
+          scene &&  <Mockup color={color} scale={scale} rotationX={rotaionX} texture={texture} material={materialType}/>} 
            {
-            console.log("scale apres appel Mocup",scale)
+
+            console.log(materialType,"fct material readed")
+
            }
         </Canvas>
       </div>
