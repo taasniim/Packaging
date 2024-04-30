@@ -7,10 +7,15 @@ import { OrbitControls } from "@react-three/drei";
 import { TopSmallPalette, BottomSmallPalete, RightSmallPalette } from "./Palette"; 
 import { Box } from "@react-three/drei";
 
-const Scene = ({ color }) => {
+
+
+const Scene = ({ color ,texture ,dimensions}) => {
   const [scene, setScene] = useState(null);
   const [scale,setScale]=useState(1); 
-const [rotaionX,setRotationX]=useState(0)
+const [rotaionX,setRotationX]=useState(0);
+
+
+
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "image",
     drop: (item) => addMocupToScene(item.id), 
@@ -45,6 +50,7 @@ const [rotaionX,setRotationX]=useState(0)
     console.log("hello Rotation function")
   }
   
+  
   return (
     <div className="Scene">
       <TopSmallPalette onDelete={clearScene} />
@@ -55,10 +61,11 @@ const [rotaionX,setRotationX]=useState(0)
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <OrbitControls />
+          
           {  
-          scene &&  <Mockup color={color} scale={scale} rotationX={rotaionX}/>} 
+          scene &&  <Mockup color={color} scale={scale} rotationX={rotaionX} texture={texture} />} 
            {
-            console.log(scale)
+            console.log(texture)
            }
         </Canvas>
       </div>

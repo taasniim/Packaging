@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTexture } from '@react-three/fiber';
 import texture1 from '../assets/texture1.jpg'; 
 import texture2 from '../assets/texture2.jpg';
 import texture3 from '../assets/texture3.jpg';
@@ -16,20 +17,36 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import { useState } from 'react';
 import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
+import { Mockup } from './LoadingMockup';
 
-export function Palette({onColorChange}) { 
+export function Palette({onColorChange , onTextureChange ,onDimensionsChange}) { 
   const [color, setColor] = useState("#898080");
+  const [dimensions, setDimensions] = useState({ x: 5, y: 5, z: 5 });
+
+  
+//--------------------------
   const handleColor=(event)=>{
     const newcolor = event.target.value;
     setColor(newcolor);
     onColorChange(newcolor);
   }
+  //--------------
+  const handleTextureChange = (newTexture) => {
+    onTextureChange(newTexture);
+  };
+//----------------------------------
+  const handleDimensionChange = (axis, value) => {
+    setDimensions({ ...dimensions, [axis]: value });
+    onDimensionsChange(dimensions);
+    console.log("dim2 done!")
+  };
+
   return( 
     <div className="Palette">   
       <div className="Size"> 
         <p> Size</p> 
-        <input type="number" name="" id="" placeholder="X" /> 
-        <input type="number" name="" id="" placeholder="Y" /> 
+        <input type="number" name="" id=""  value={dimensions.x} onChange={(e) => handleDimensionChange('x', e.target.value)}  placeholder="X" /> 
+        <input type="number" name="" id="" value={dimensions.y} onChange={(e) => handleDimensionChange('y', e.target.value)} placeholder="Y" /> 
         <input type="number" name="" id="" placeholder="W" /> 
         <input type="number" name="" id="" placeholder="H" />
       </div> 
@@ -39,13 +56,12 @@ export function Palette({onColorChange}) {
       </div> 
       <div className="Texture"> 
         <p>Texture</p> 
-        <img src={texture1} alt="" /> 
-        <img src={texture2} alt="" /> 
-        <img src={texture3} alt="" /> 
-        <img src={texture2} alt="" /> 
-        <img src={texture1} alt="" />
-        <img src={texture6} alt="" /> 
-        <img src={texture3} alt="" />
+        <img src={texture1} alt="" onClick={() => handleTextureChange(texture1)} /> 
+        <img src={texture2} alt="" onClick={() => handleTextureChange(texture2)} /> 
+        <img src={texture3} alt="" onClick={() => handleTextureChange(texture3)} /> 
+        <img src={texture2} alt="" onClick={() => handleTextureChange(texture4)} /> 
+        <img src={texture1} alt="" onClick={() => handleTextureChange(texture5)} />
+        <img src={texture6} alt="" onClick={() => handleTextureChange(texture6)} />
       </div> 
       <div className="Material"> 
         <p>Material</p> 
