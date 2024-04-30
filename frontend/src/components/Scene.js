@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDrop } from "react-dnd";
 import mockupList from "../data/mockup";
 import { Mockup} from "./LoadingMockup";
@@ -9,12 +9,13 @@ import { TopSmallPalette, BottomSmallPalete, RightSmallPalette } from "./Palette
 
 
 
-const Scene = ({ color ,texture , materialType}) => {
+const Scene = ({ color ,texture ,size , materialType}) => {
 
   const [scene, setScene] = useState(null);
-  const [scale,setScale]=useState(1); 
-const [rotaionX,setRotationX]=useState(0);
-
+  const [scale,setScale]=useState(size); 
+const [rotaionX,setRotationX]=useState(0); 
+console.log("hello scale scene",scale); 
+console.log("hello size scene",size);
 
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -30,8 +31,7 @@ const [rotaionX,setRotationX]=useState(0);
     if (mockup) {
       setScene(mockup);
     } 
-    console.log("function add mocup to scene ");
-    console.log(id);
+   
   };
 
   const clearScene = () => { 
@@ -39,19 +39,22 @@ const [rotaionX,setRotationX]=useState(0);
     setScene(null);
   }; 
   const Zoomin=()=>{
-    setScale(scale*1.1) 
-    console.log("hello Zoom in function")
+    setScale([size[0]*1.1,size[1]*1.1,size[2]*1.1]) 
+    console.log("hello Zoom in function",scale)
   } 
   const Zoomout=()=>{
-    setScale(scale/1.1) 
-    console.log("hello ZoomOut function")
+    setScale([size[0]/1.1,size[1]/1.1,size[2]/1.1]) 
+    console.log("hello ZoomOut function",scale)
   }
  const RotationX=()=>{
    setRotationX(rotaionX+(Math.PI)/4); 
-    console.log("hello Rotation function")
+    
   }
   
-  
+  useEffect(() => {
+    setScale(size);
+  }, [size]); 
+  console.log("scale apre useeffect",scale);
   return (
     <div className="Scene">
       <TopSmallPalette onDelete={clearScene} />
@@ -66,7 +69,9 @@ const [rotaionX,setRotationX]=useState(0);
           {  
           scene &&  <Mockup color={color} scale={scale} rotationX={rotaionX} texture={texture} material={materialType}/>} 
            {
-            console.log(materialType,"fct mat readed")
+
+            console.log(materialType,"fct material readed")
+
            }
         </Canvas>
       </div>

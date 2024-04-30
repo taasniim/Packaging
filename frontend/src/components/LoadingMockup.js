@@ -35,7 +35,7 @@ export function Mockup( {color, scale,rotationX , texture ,materialType}){
   });
   
   return(
-    <group scale={[scale,scale,scale]} rotation={[0,rotationX,0]} >
+    <group scale={[scale[0],scale[1],scale[2]]} rotation={[0,rotationX,0]} >
       <primitive object={obj}/>
     </group>
   )

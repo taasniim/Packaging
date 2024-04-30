@@ -8,8 +8,10 @@ import { useState } from "react";
 function Main(){ 
   const [color, setColor] = useState("#898080");
   const [texture, setTexture] = useState(null);
-  const [materialType, setMaterialType]= useState(null);
-  //--------------------
+
+const [scale,setScale]=useState([1,1,1]) 
+const [materialType, setMaterialType]= useState(null); 
+
 
 
   const handleColorChange = (color) => {
@@ -21,8 +23,11 @@ function Main(){
     console.log("texture done");
   };
 
-  
-  //-------
+  const handleSizeChange = ([x,y,z]) => {
+    setScale([x,y,z]); 
+    console.log("hello handlesize change")
+    console.log(scale)
+  };
   const handleMaterialChange=(materialType) =>{
     setMaterialType(materialType);
     setTexture(null);
@@ -30,6 +35,7 @@ function Main(){
     console.log("mat in main")
 
   }
+  
 
 
   
@@ -38,8 +44,10 @@ function Main(){
 <div className="Main"> 
 <Library/> 
 
-<Scene color={color} texture={texture}  material={materialType}/>
-<Palette onColorChange={handleColorChange} onTextureChange={handleTextureChange}   onMaterialChange={handleMaterialChange}/>
+
+
+<Scene color={color} texture={texture} size={scale}  material={materialType}/>
+<Palette onColorChange={handleColorChange} onTextureChange={handleTextureChange} onSizechange={handleSizeChange} onMaterialChange={handleMaterialChange} />
 
 
 </div> 
