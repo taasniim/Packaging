@@ -9,7 +9,7 @@ import { Box } from "@react-three/drei";
 
 
 
-const Scene = ({ color ,texture ,dimensions}) => {
+const Scene = ({ color ,texture ,dimensions, materialType}) => {
   const [scene, setScene] = useState(null);
   const [scale,setScale]=useState(1); 
 const [rotaionX,setRotationX]=useState(0);
@@ -63,9 +63,9 @@ const [rotaionX,setRotationX]=useState(0);
           <OrbitControls />
           
           {  
-          scene &&  <Mockup color={color} scale={scale} rotationX={rotaionX} texture={texture} />} 
+          scene &&  <Mockup color={color} scale={scale} rotationX={rotaionX} texture={texture} material={materialType}/>} 
            {
-            console.log(texture)
+            console.log(materialType,"fct mat readed")
            }
         </Canvas>
       </div>
