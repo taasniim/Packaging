@@ -12,7 +12,7 @@ export function Mockup( {color, scale,rotationX , texture ,materialType}){
   const mtl=useLoader(MTLLoader,"untitled.mtl");
   const obj=useLoader(OBJLoader,"untitled.obj",(loader)=>loader.setMaterials(mtl)); 
 
-  //-------
+  
   
   const material = new THREE.MeshBasicMaterial({ color : color });
   if (texture){
