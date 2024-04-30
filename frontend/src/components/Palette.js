@@ -29,16 +29,19 @@ export function Palette({onColorChange , onTextureChange,onSizechange }) {
     const value=parseFloat(event.target.value);  
     if (!isNaN(value)){
     if(id===1){
-      setScale([value,scale[1],scale[2]])
+      setScale([value,scale[1],scale[2]]) 
+      onSizechange([value,scale[1],scale[2]])
     }
     else if(id===2){ 
-      setScale([scale[0],value,scale[2]])
+      setScale([scale[0],value,scale[2]]) 
+      onSizechange([scale[0],value,scale[2]])
 
     } 
     else if(id===3){
-      setScale([scale[0],scale[1],value])
+      setScale([scale[0],scale[1],value]) 
+      onSizechange([scale[0],scale[1],value])
     }
-    onSizechange([value,scale[1],scale[2]])
+   
   }
   else if (event.target.value === '') {
     if (id === 1) {
@@ -70,9 +73,9 @@ const handleColor=(event)=>{
     <div className="Palette">   
       <div className="Size"> 
         <p> Size</p> 
-        <input type="number" name="" id="1"   placeholder="X" value={scale[0]} onChange={handlesize}/> 
-        <input type="number" name="" id="2"placeholder="Y" value={scale[1]} onChange={handlesize} /> 
-        <input type="number" name="" id="3" placeholder="W"value={scale[2]} onChange={handlesize} /> 
+        <input type="number" name="" id="1"   placeholder="X" value={scale[0]} onInput={handlesize}/> 
+        <input type="number" name="" id="2"placeholder="Y" value={scale[1]} onInput={handlesize} /> 
+        <input type="number" name="" id="3" placeholder="W"value={scale[2]} onInput={handlesize} /> 
         <input type="number" name="" id="" placeholder="H" />
       </div> 
       <div className="Color">  

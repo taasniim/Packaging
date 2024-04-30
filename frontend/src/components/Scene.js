@@ -37,11 +37,11 @@ console.log("hello size scene",size);
     setScene(null);
   }; 
   const Zoomin=()=>{
-    setScale([size[0]*1.1,size[1]*1.1,size[2]*1.1]) 
+    setScale([scale[0]*1.1,scale[1]*1.1,scale[2]*1.1]) 
     console.log("hello Zoom in function",scale)
   } 
   const Zoomout=()=>{
-    setScale([size[0]/1.1,size[1]/1.1,size[2]/1.1]) 
+    setScale([scale[0]/1.1,scale[1]/1.1,scale[2]/1.1]) 
     console.log("hello ZoomOut function",scale)
   }
  const RotationX=()=>{
@@ -52,7 +52,7 @@ console.log("hello size scene",size);
   useEffect(() => {
     setScale(size);
   }, [size]); 
-  console.log("scale apre useeffect",scale);
+  console.log("scale apre useeffect",scale)
   return (
     <div className="Scene">
       <TopSmallPalette onDelete={clearScene} />
