@@ -19,34 +19,28 @@ import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import { Mockup } from './LoadingMockup';
 
-export function Palette({onColorChange , onTextureChange ,onDimensionsChange}) { 
+export function Palette({onColorChange , onTextureChange }) { 
   const [color, setColor] = useState("#898080");
-  const [dimensions, setDimensions] = useState({ x: 5, y: 5, z: 5 });
-
   
-//--------------------------
-  const handleColor=(event)=>{
+const handleColor=(event)=>{
     const newcolor = event.target.value;
     setColor(newcolor);
     onColorChange(newcolor);
   }
-  //--------------
+  
   const handleTextureChange = (newTexture) => {
     onTextureChange(newTexture);
   };
-//----------------------------------
-  const handleDimensionChange = (axis, value) => {
-    setDimensions({ ...dimensions, [axis]: value });
-    onDimensionsChange(dimensions);
-    console.log("dim2 done!")
-  };
+
+
+
 
   return( 
     <div className="Palette">   
       <div className="Size"> 
         <p> Size</p> 
-        <input type="number" name="" id=""  value={dimensions.x} onChange={(e) => handleDimensionChange('x', e.target.value)}  placeholder="X" /> 
-        <input type="number" name="" id="" value={dimensions.y} onChange={(e) => handleDimensionChange('y', e.target.value)} placeholder="Y" /> 
+        <input type="number" name="" id=""   placeholder="X" /> 
+        <input type="number" name="" id=""placeholder="Y" /> 
         <input type="number" name="" id="" placeholder="W" /> 
         <input type="number" name="" id="" placeholder="H" />
       </div> 

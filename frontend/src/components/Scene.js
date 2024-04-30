@@ -5,11 +5,10 @@ import { Mockup} from "./LoadingMockup";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { TopSmallPalette, BottomSmallPalete, RightSmallPalette } from "./Palette"; 
-import { Box } from "@react-three/drei";
 
 
 
-const Scene = ({ color ,texture ,dimensions}) => {
+const Scene = ({ color ,texture }) => {
   const [scene, setScene] = useState(null);
   const [scale,setScale]=useState(1); 
 const [rotaionX,setRotationX]=useState(0);
