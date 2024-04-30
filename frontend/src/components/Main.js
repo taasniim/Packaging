@@ -8,23 +8,20 @@ import { useState } from "react";
 function Main(){ 
   const [color, setColor] = useState("#898080");
   const [texture, setTexture] = useState(null);
-  const [dimensions, setDimensions] = useState({ x: 1, y: 1, z: 1 }); 
   const [materialType, setMaterialType]= useState(null);
   //--------------------
+
 
   const handleColorChange = (color) => {
     setColor(color);
   };
-  //---------
+
   const handleTextureChange = (texture) => {
     setTexture(texture);
     console.log("texture done");
   };
-  //--------------
-  const handleDimensionsChange = (newDimensions) => {
-    setDimensions(newDimensions);
-    console.log("dim done");
-  };
+
+  
   //-------
   const handleMaterialChange=(materialType) =>{
     setMaterialType(materialType);
@@ -34,13 +31,16 @@ function Main(){
 
   }
 
+
   
   return( 
     <DndProvider backend={HTML5Backend}>
 <div className="Main"> 
 <Library/> 
-<Scene color={color} texture={texture} dimensions={dimensions} material={materialType}/>
-<Palette onColorChange={handleColorChange} onTextureChange={handleTextureChange}  onDimensionsChange={handleDimensionsChange} onMaterialChange={handleMaterialChange}/>
+
+<Scene color={color} texture={texture}  material={materialType}/>
+<Palette onColorChange={handleColorChange} onTextureChange={handleTextureChange}   onMaterialChange={handleMaterialChange}/>
+
 
 </div> 
 </DndProvider>
