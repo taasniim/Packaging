@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTexture } from '@react-three/fiber';
 import texture1 from '../assets/texture1.jpg'; 
-import logo from '../assets/logo.png';
 import texture2 from '../assets/texture2.jpg';
 import texture3 from '../assets/texture3.jpg';
 import texture4 from '../assets/texture4.jpg';
@@ -18,8 +17,9 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import { useState } from 'react';
 import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
-import { Mockup } from './LoadingMockup';
-
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
+import RotateRightIcon from '@mui/icons-material/RotateRight';
+import RotateLeftIcon from '@mui/icons-material/RotateLeft';
 
 export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange}) { 
   const [color, setColor] = useState("#898080"); 
@@ -68,7 +68,7 @@ const handleColor=(event)=>{
     onTextureChange(newTexture);
   };
 
-  //----------
+  
   const handleMaterialChange =(newMaterialType) =>{
     onMaterialChange( newMaterialType);
   }
@@ -146,10 +146,16 @@ const handleColor=(event)=>{
 
 
 
-export function BottomSmallPalete({zoomin,zoomout,rotationX}){ 
+export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ}){ 
   
   return(
-<div className='BottomSmallPalette'>  
+<div className='BottomSmallPalette'>    
+<IconButton aria-label='RotaionZ'>
+   <RotateLeftIcon sx={{color:'rgba(65, 48, 188, 1)'}} onClick={rotationZ} />  
+</IconButton>
+<IconButton aria-label='RotaionY'>
+   <SettingsBackupRestoreIcon sx={{color:'rgba(65, 48, 188, 1)'}} onClick={rotationY} />  
+</IconButton>
 <FaSyncAlt style={{width:'15%',color:'rgba(65, 48, 188, 1)'}} onClick={rotationX} />
 <FaMinus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}} onClick={zoomout}/> 
 <FaPlus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}} onClick={zoomin}/> 

@@ -13,7 +13,7 @@ const Scene = ({ color ,texture ,size , materialType}) => {
 
   const [scene, setScene] = useState(null);
   const [scale,setScale]=useState(size); 
-const [rotaionX,setRotationX]=useState(0); 
+const [rotation,setRotation]=useState([0,0,0]); 
 console.log("hello scale scene",scale); 
 console.log("hello size scene",size);
 
@@ -37,6 +37,7 @@ console.log("hello size scene",size);
   const clearScene = () => { 
    
     setScene(null);
+   
   }; 
   const Zoomin=()=>{
     setScale([scale[0]*1.1,scale[1]*1.1,scale[2]*1.1]) 
@@ -47,9 +48,18 @@ console.log("hello size scene",size);
     console.log("hello ZoomOut function",scale)
   }
  const RotationX=()=>{
-   setRotationX(rotaionX+(Math.PI)/4); 
+   setRotation([rotation[0],rotation[1]+(Math.PI)/4,rotation[2]]); 
     
-  }
+  } 
+  const RotationY=()=>{
+    setRotation([rotation[0]+(Math.PI)/4,rotation[1],rotation[2]]); 
+     
+   } 
+
+   const RotationZ=()=>{
+    setRotation([rotation[0],rotation[1],rotation[2]+(Math.PI)/4]); 
+     
+   }
   
   useEffect(() => {
     setScale(size);
@@ -67,7 +77,7 @@ console.log("hello size scene",size);
           <OrbitControls />
           
           {  
-          scene &&  <Mockup color={color} scale={scale} rotationX={rotaionX} texture={texture} material={materialType}/>} 
+          scene &&  <Mockup color={color} scale={scale} rotation={rotation} texture={texture} material={materialType}/>} 
            {
 
             console.log(materialType,"fct material readed")
@@ -75,7 +85,7 @@ console.log("hello size scene",size);
            }
         </Canvas>
       </div>
-      <BottomSmallPalete zoomin={Zoomin} zoomout={Zoomout} rotationX={RotationX} />
+      <BottomSmallPalete zoomin={Zoomin} zoomout={Zoomout} rotationX={RotationX} rotationY={RotationY} rotationZ={RotationZ}/>
     </div>
   );
 };
