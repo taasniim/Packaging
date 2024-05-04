@@ -8,11 +8,11 @@ import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
   import * as THREE from "three";
 
   
-export function Mockup( {color, scale,rotationX , texture ,materialType}){
+export function Mockup( {color, scale,rotation , texture ,materialType}){
   const mtl=useLoader(MTLLoader,"untitled.mtl");
   const obj=useLoader(OBJLoader,"untitled.obj",(loader)=>loader.setMaterials(mtl)); 
 
-  //-------
+  
   
   const material = new THREE.MeshBasicMaterial({ color : color });
   if (texture){
@@ -35,7 +35,7 @@ export function Mockup( {color, scale,rotationX , texture ,materialType}){
   });
   
   return(
-    <group scale={[scale[0],scale[1],scale[2]]} rotation={[0,rotationX,0]} >
+    <group scale={[scale[0],scale[1],scale[2]]} rotation={[rotation[0],rotation[1],rotation[2]]} >
       <primitive object={obj}/>
     </group>
   )
