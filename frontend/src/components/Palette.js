@@ -176,7 +176,14 @@ export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ}
 </div>);
 } 
 
-export function RightSmallPalette({zoomin,zoomout}){ 
+export function RightSmallPalette({zoomin,zoomout,OpenClose}){  
+  const [Animation,setAnimation]=useState(0)  
+  function BoxAnimation(event){
+   const value=event.target.value; 
+   setAnimation(value);
+   OpenClose(Animation);
+
+  }
   function preventHorizontalKeyboardNavigation(event) {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
@@ -200,7 +207,11 @@ export function RightSmallPalette({zoomin,zoomout}){
     color:"gray"
   }}
   orientation="vertical"
-  defaultValue={0}
+  defaultValue={0} 
+  min={0}
+  value={Animation}
+  max={100} 
+  onChange={BoxAnimation}
   aria-label="open-mockup"
   valueLabelDisplay="auto"
   onKeyDown={preventHorizontalKeyboardNavigation}

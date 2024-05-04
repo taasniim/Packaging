@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { useDrop } from "react-dnd";
 import mockupList from "../data/mockup";
-import { Mockup} from "./LoadingMockup";
+import { Mockup,MockupGlb} from "./LoadingMockup";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { TopSmallPalette, BottomSmallPalete, RightSmallPalette } from "./Palette"; 
@@ -13,7 +13,8 @@ const Scene = ({ color ,texture ,size , materialType}) => {
 
   const [scene, setScene] = useState(null);
   const [scale,setScale]=useState(size); 
-const [rotation,setRotation]=useState([0,0,0]); 
+const [rotation,setRotation]=useState([0,0,0]);  
+const[OpenClose,setOpenClose]=useState(80)
 console.log("hello scale scene",scale); 
 console.log("hello size scene",size);
 
@@ -63,12 +64,15 @@ console.log("hello size scene",size);
   
   useEffect(() => {
     setScale(size);
-  }, [size]); 
-  console.log("scale apre useeffect",scale)
+  }, [size]);  
+  const handleOpenClose=( value)=>{
+    setOpenClose(value);  
+    
+  }
   return (
     <div className="Scene">
       <TopSmallPalette onDelete={clearScene} />
-      <RightSmallPalette zoomin={Zoomin} zoomout={Zoomout}/>
+      <RightSmallPalette zoomin={Zoomin} zoomout={Zoomout} OpenClose={handleOpenClose}/>
       <div className="RealScene" ref={drop} style={{ width: "95%", height: "80%", alignContent: "center" }}>
         <Canvas camera={{ position: [0, 0, 5] }}>
          
@@ -77,10 +81,10 @@ console.log("hello size scene",size);
           <OrbitControls />
           
           {  
-          scene &&  <Mockup color={color} scale={scale} rotation={rotation} texture={texture} material={materialType}/>} 
+          scene &&  <MockupGlb color={color} scale={scale} rotation={rotation} texture={texture} material={materialType} Animation={OpenClose}/>} 
            {
 
-            console.log(materialType,"fct material readed")
+            console.log("OpenColse",OpenClose)
 
            }
         </Canvas>
