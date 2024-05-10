@@ -3,13 +3,13 @@ import LeftSide from "../components/LeftSide";
 import RightSide from "../components/RightSide";  
 
 
+
 function Tool (){
   return (
     <div className="Tool">  
     <LeftSide></LeftSide> 
     <RightSide></RightSide> 
-    
-
+   
     </div>
   );
 } 

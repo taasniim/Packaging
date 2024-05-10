@@ -1,5 +1,38 @@
 const User = require('../models/user')
 const asyncHandler = require('express-async-handler')
+const bcrypt=require("bcrypt")
+
+
+//register user
+const register = asyncHandler(async (req, res) => {
+    // Génération du sel de hachage
+    const salt = await bcrypt.genSalt(10); // Utilisation de await car genSalt retourne une promesse
+    const hash = bcrypt.hashSync(req.body.password, salt);
+
+    // Création d'un nouvel utilisateur avec le mot de passe haché
+    const newUser = new User({
+        ...req.body,
+        password: hash
+    });
+
+    try {
+        // Sauvegarde de l'utilisateur dans la base de données
+        const savedUser = await newUser.save();
+        res.status(201).json({
+            success: true,
+            message: "Utilisateur créé avec succès",
+            data: savedUser
+        });
+    } catch (error) {
+        // Gestion des erreurs lors de la sauvegarde de l'utilisateur
+        res.status(400).json({
+            success: false,
+            message: "Échec de la création de l'utilisateur",
+            error: error.message
+        });
+    }
+});
+
 
 const getAllUsers= asyncHandler(async(req,res) =>{
     try{
@@ -27,18 +60,6 @@ const getOneUser = asyncHandler(async(req,res) =>{
     }
 })
 
-//create user
-const createUser =asyncHandler(async(req,res) =>{
-    try{
-        
-        const user = await User.create(req.body)
-        res.status(200).json(user);
-        
-    }catch(error){
-        res.status(500);
-        throw new Error(error.message);
-    }
-})
 //update user
 const updateUser=asyncHandler(async(req,res)=> {
     try {
@@ -72,10 +93,12 @@ const deleteUser = asyncHandler(async(req,res)=> {
         throw new Error(error.message);
     }
 } )
+
+
 module.exports={
     getAllUsers,
     getOneUser ,
-    createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    register
 }
