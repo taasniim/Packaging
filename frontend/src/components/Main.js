@@ -20,19 +20,16 @@ const [materialType, setMaterialType]= useState(null);
 
   const handleTextureChange = (texture) => {
     setTexture(texture);
-    console.log("texture done");
+   
   };
 
   const handleSizeChange = ([x,y,z]) => {
     setScale([x,y,z]); 
-    console.log("hello handlesize change")
-    console.log(scale)
+   
   };
   const handleMaterialChange=(materialType) =>{
     setMaterialType(materialType);
     setTexture(null);
-    
-    console.log("mat in main")
 
   }
   
