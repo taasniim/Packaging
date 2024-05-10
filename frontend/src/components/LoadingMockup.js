@@ -1,11 +1,13 @@
 
 import React, { useRef, useState,useEffect} from "react"; 
+import logo from '../assets/logo.png';
 
 import { Canvas, useLoader,useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader"; 
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"; 
+import { InternalList,ExternalList } from "../data/mockup";
   import * as THREE from "three";
 
   
@@ -44,21 +46,29 @@ export function Mockup( {color, scale,rotation , texture ,materialType}){
 
 
 
-export function MockupGlb( {color, scale,rotation , texture ,materialType,Animation}){
+export function ExternalMockup( {color, scale,rotation , texture ,materialType,Animation}){
+  
+  
   const glb=useLoader(GLTFLoader,"box-animation-template-gltf.glb")
 
-  
-  
-  const material = new THREE.MeshBasicMaterial({ color : color });
+ 
+  const material = new THREE.MeshBasicMaterial({ color : color ,side: THREE.DoubleSide });
   if (texture){
   const selectedtexture = new THREE.TextureLoader().load(texture);
   material.map= selectedtexture;
 }else if (materialType){
   const selectedMaterial= new THREE.TextureLoader().load(materialType);
   material.map=selectedMaterial;
-}
+} 
 
 
+
+glb.scene.traverse((node) => {
+  if (node.isMesh) {
+    node.material = material; 
+    console.log("Nom du maillage :", node.name);
+  }
+});
   console.log("function Mocup Three");
   
  // glb.animation nal9a fih deux animation bech nfilter wa7da 
@@ -94,9 +104,25 @@ export function MockupGlb( {color, scale,rotation , texture ,materialType,Animat
     if (mixer) {
       mixer.update(delta);
     }
-  });
+  }); 
+  
 
- 
+  
+  return(
+    <group scale={[scale[0],scale[1],scale[2]]} rotation={[rotation[0],rotation[1],rotation[2]]} >
+      { glb.scene && <primitive object={glb.scene}   />}
+    </group>
+  )
+}   
+
+
+
+
+export function InternalMockup( { scale,rotation }){
+  
+  
+  const glb=useLoader(GLTFLoader,"bottle1111.glb")
+
   
   return(
     <group scale={[scale[0],scale[1],scale[2]]} rotation={[rotation[0],rotation[1],rotation[2]]} >

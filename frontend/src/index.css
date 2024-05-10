@@ -200,15 +200,14 @@ box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 
  
 } 
 .Main .Library .Head .Internal{ 
-  background: rgba(238, 239, 243, 1);
+  
  align-content: center; 
  padding-left: 30% ; 
- color: rgba(65, 48, 188, 1);
+ 
 
 } 
 .Main .Library .Head .External{ 
-  background: linear-gradient(106.79deg, rgba(65, 48, 188, 1) -13.72%, rgba(106, 176, 250, 1) 108.14%);
-  color: rgba(238, 239, 243, 1);
+
   align-content: center; 
   padding-left: 30% ; 
 
@@ -258,7 +257,8 @@ border-width: 1px;
   grid-template-columns: 1fr 1fr;
 } 
 
-.Main .Library .Packaging img{
+.Main .Library .Packaging img{ 
+  width: 70%;
   margin-bottom: 12%;
 }   
 .Main .Library .Packaging img:hover{
