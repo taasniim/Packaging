@@ -3,7 +3,6 @@ import React, {useEffect, useState} from "react";
 import HomePage from "./components/homePage";
 import Login from "./components/login";
 import Signup from "./components/signup";
-import Leftside from "./components/leftsidehome"
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 
 
@@ -24,7 +23,7 @@ useEffect(()=>{
       
     <Router>
     <Routes>
-      <Route exact path="/left" element={<Leftside/>}></Route>
+      
     <Route exact path="/home" element={<HomePage/>} />
     <Route exact path="/" element={<Login/>} />
       <Route exact path="/signup" element={<Signup/>} />
