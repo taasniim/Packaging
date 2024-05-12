@@ -1,22 +1,18 @@
 import Tool from "./views/Tool";
 import React, {useEffect, useState} from "react";
-import HomePage from "./components/homePage";
-import Login from "./components/login";
-import Signup from "./components/signup";
+import HomePage from "./views/homePage";
+import Login from "./views/login";
+import Signup from "./views/signup";
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
+import { useId } from "react";
 
 
 function App() {
-const [backendData , setBackendData] = useState([{}])
-useEffect(()=>{
-  fetch("http://localhost:5000/api").then(
-    response => response.json()
-  ).then(
-    data =>{
-      setBackendData(data)
-    }
-  )
-},[])
+  const [idUser,setUserId]= useState(null)
+
+const updateId=(id)=>{
+  setUserId(id);
+}
 
   return (
     <div className="app">
@@ -24,8 +20,9 @@ useEffect(()=>{
     <Router>
     <Routes>
       
-    <Route exact path="/home" element={<HomePage/>} />
-    <Route exact path="/" element={<Login/>} />
+    <Route exact path="/home" element={<HomePage id={idUser}/>} />
+    {console.log("app js id",idUser)}
+    <Route exact path="/" element={<Login  updateid={updateId}/>} />
       <Route exact path="/signup" element={<Signup/>} />
       <Route exact path="/Tool" element={<Tool/>} />
     </Routes>

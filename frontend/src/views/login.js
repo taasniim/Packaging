@@ -9,13 +9,14 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const Login = () => {
+const Login = ({updateid}) => {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [Phone_Number, setPhoneNumber] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0); 
+  const [idUser,setUserID]=useState(null);
   
   
   const handleChange = (event, newValue) => {
@@ -41,7 +42,11 @@ const Login = () => {
         }
 
         // Assuming response status is 200 (OK)
-        const data = await response.json();
+        const data = await response.json(); 
+        console.log('data login',data.data._id);
+        setUserID(data.data._id) 
+        updateid(data.data._id)
+        console.log('data login userid',data.data._id);
         // Handle successful login (e.g., store token, redirect user)
         // For example:
         localStorage.setItem('token', data.token);
@@ -64,7 +69,7 @@ const Login = () => {
   return (
     <>
       <LoginAppBar />
-      <Grid container justifyContent="center">
+      <Grid container justifyContent="center" >
         <Grid item xs={12} sm={6}>
           <img src={loginImg} alt="/" style={{ width: '90%', height: '100%', marginTop: '50px' }} />
         </Grid>

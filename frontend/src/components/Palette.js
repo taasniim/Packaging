@@ -153,22 +153,35 @@ const handleColor=(event)=>{
     fetchProjects();
   }, []);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  
 
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/project');
+      // Récupérer l'ID de l'utilisateur depuis le stockage local ou tout autre mécanisme d'authentification
+      const userId = localStorage.getItem('663d431ae326dd99633fb8f0'); // Adapté à votre méthode d'authentification
+  
+      // Vérifier si l'ID de l'utilisateur est disponible
+      if (!userId) {
+        console.error('User ID not available');
+        return;
+      }
+  
+      // Faire une requête à l'API avec l'ID de l'utilisateur
+      const response = await fetch(`http://localhost:5000/api/project/users/${userId}`);
       const data = await response.json();
       setProjects(data);
     } catch (error) {
-      console.error('Error fetching projects:', error);
+      console.error('Error fetching user projects:', error);
     }
+  };
+  const handleClick =async (event) => {
+    setAnchorEl(event.currentTarget);
+    await fetchProjects();
   };
 
   const handleViewMore = () => {

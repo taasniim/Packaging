@@ -27,6 +27,20 @@ const mockupSchema = mongoose.Schema(
             required:true, 
             default:0
             
+        },
+        price: {
+            type: Number ,
+            required:true, 
+            default:0
+        },
+        color:{
+            type: "String",
+            required: false,
+        },
+        size:{
+            type: Number ,
+            required:true, 
+            default:1
         }
        
         

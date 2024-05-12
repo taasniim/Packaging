@@ -6,6 +6,7 @@ import Scene from "./Scene";
 import { useState } from "react";
 
 function Main(){ 
+  const [scene,setScene]=useState(null);
   const [color, setColor] = useState("#898080");
   const [texture, setTexture] = useState(null);
 

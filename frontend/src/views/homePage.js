@@ -40,7 +40,7 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 const drawerWidth = 240;
 
-export default function HomePage() {
+export default function HomePage({id}) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   
@@ -65,13 +65,23 @@ export default function HomePage() {
   }, [selectedTab]);
 
   const fetchProjects = async () => {
-      try {
-          const response = await fetch('http://localhost:5000/api/project');
-          const data = await response.json();
-          setProjects(data);
-      } catch (error) {
-          console.error('Error fetching projects:', error);
+    try {
+      
+      const userId =id 
+  
+      // Vérifier si l'ID de l'utilisateur est disponible
+      if (!userId) {
+        console.error('User ID not available');
+        return;
       }
+  
+      // Faire une requête à l'API avec l'ID de l'utilisateur
+      const response = await fetch(`http://localhost:5000/api/project/users/${userId}`);
+      const data = await response.json();
+      setProjects(data);
+    } catch (error) {
+      console.error('Error fetching user projects:', error);
+    }
   };
   // Fonction pour mettre à jour un projet
   const updateProject = async (_id) => {
@@ -395,7 +405,7 @@ const deleteProject = async (_id) => {
                                         component="div"
                                         sx={{ fontWeight: 'bold', color: 'navy', textAlign: 'center' }}
                                     >
-                                        <Link href="/Tool" >Packaging</Link>
+                                        <Link to={`/Tool?id=${id}`} >Packaging</Link>
                                     </Typography>
                                 </Box>
                                 <Box
@@ -459,6 +469,7 @@ const deleteProject = async (_id) => {
         
                     </Box>
                 )}  
+                {console.log("home id",id)}
       </Box>
       
     </Box>
