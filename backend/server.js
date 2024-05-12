@@ -4,11 +4,14 @@ const mongoose = require('mongoose')
 const app = express()
 const bodyParser = require('body-parser');
 const cors = require('cors')
+const bcrypt = require('bcrypt')
 
 const mockupRoute= require('./routes/mockupRoute')
 const userRoute= require('./routes/userRoute')
+const authRoute=require('./routes/authRoute')
+const projectRoute=require('./routes/projectRoute')
 
-const PORT= process.env.PORT || 3000
+const PORT= process.env.PORT || 5000
 const MONGO_URL = process.env.MONGO_URL
 const errorMiddleware = require('./middelware/errorMiddleware')
 //si on veux limité l'accée au bd
@@ -25,10 +28,12 @@ app.use(cors())
 app.use('/api/mockups', mockupRoute);
 app.use('/api/users', userRoute);
 app.use(errorMiddleware);
+app.use("/api/auth",authRoute);
+app.use("/api/project",projectRoute);
 
 
-app.get('/', (req,res)=>{
-   res.send('hello  nodeapi')
+app.get('/api', (req,res)=>{
+   res.json({"users" : ["user one","user2"]})
 })
 
 app.get('/blog', (req,res)=>{

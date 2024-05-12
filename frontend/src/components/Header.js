@@ -3,15 +3,24 @@ import { FaArrowLeft, FaPlus, FaAngleLeft, FaAngleRight, FaImage } from 'react-i
 import firstParticipant from '../assets/firstParticipant.jpg';
 import secondParticipant from '../assets/second-participant.jpg';
 import Button from '@mui/material/Button'; 
-import ImageIcon from '@mui/icons-material/Image'; 
+import ImageIcon from '@mui/icons-material/Image';  
+import HomePage from '../views/homePage'; 
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Link } from '@material-ui/core';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box'; 
 
-import Box from '@mui/material/Box';
 
-function Header() {
+function Header() { 
+  
   return (
     <div className="Header"> 
-      <div className="Left"> 
-        <FaArrowLeft className="fa-2xl" style={{width:'10%',color:'rgba(65, 48, 188, 1)'}} />
+      <div className="Left">  
+      <Link to="/home" >
+      <IconButton>
+          <ArrowBackIcon style={{ width: '50%', color: 'navy' }}  />
+        </IconButton> 
+        </Link>
         <p className="Titre">Tool de conception d'emballage</p>
       </div>  
 

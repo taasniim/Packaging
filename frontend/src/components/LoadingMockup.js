@@ -87,7 +87,7 @@ glb.scene.traverse((node) => {
       console.log("clip",clip)
       const action = mixer.clipAction(clip);  
       //action.paused=false; ebih el variable hedha nwa9fou bih el animation    
-      
+      action.paused=true
       if (Animation) //ken famma animation
       { 
         action.time=(clip.duration*Animation)/100; //time twa9fou fi nesba mou3ayna  

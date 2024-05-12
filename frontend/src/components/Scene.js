@@ -9,12 +9,12 @@ import { TopSmallPalette, BottomSmallPalete, RightSmallPalette } from "./Palette
 
 
 
-const Scene = ({ color ,texture ,size , materialType,TypeOfObject}) => {
+const Scene = ({ color ,texture ,size , materialType,TypeOfObject,updateValueOfScene}) => {
 
   const [scene, setScene] = useState(null);
   const [scale,setScale]=useState(size); 
 const [rotation,setRotation]=useState([0,0,0]);  
-const[OpenClose,setOpenClose]=useState(80)
+const[OpenClose,setOpenClose]=useState(0)
 console.log("hello scale scene",scale); 
 console.log("hello size scene",size);
 
@@ -30,14 +30,21 @@ console.log("hello size scene",size);
   const addMocupToScene = (id) => {
     const mockup = ExternalList.find((mockup) => mockup.id === id);
     if (mockup) {
-      setScene(mockup);
-    } 
+      setScene(mockup); 
+      updateValueOfScene(mockup)
+    }  
+   
   
-  };
+  }; 
+  
 
   const clearScene = () => { 
    
-    setScene(null);
+    setScene(null); 
+    updateValueOfScene(null)
+    setScale([1,2,1]);
+    setRotation([0,0,0]) 
+
    
   }; 
   const Zoomin=()=>{
@@ -84,7 +91,11 @@ console.log("hello size scene",size);
          
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
-          <OrbitControls />
+          <OrbitControls /> 
+          {scene !== null && (
+  console.log("scene 1", scene.id)
+)}
+
           
           {scene && (
   TypeOfObject === ExternalList ? (
@@ -96,18 +107,18 @@ console.log("hello size scene",size);
 
 
 
-}
+} 
+{scene !== null && (
+  console.log("scene 2", scene.id)
+)}
+
 
 
 
 
 
    
-           {
- 
-            
-
-           }
+         
         </Canvas>
       </div>
       <BottomSmallPalete zoomin={Zoomin} zoomout={Zoomout} rotationX={RotationX} rotationY={RotationY} rotationZ={RotationZ}/>

@@ -14,14 +14,25 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton'; 
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import ThreeDRotationIcon from '@mui/icons-material/ThreeDRotation';
 import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 import RotateLeftIcon from '@mui/icons-material/RotateLeft';
+import DeleteIcon from '@mui/icons-material/Delete';
+import {  Tooltip, Menu, MenuItem } from '@mui/material';
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+import ZoomInRoundedIcon from '@mui/icons-material/ZoomInRounded';
+import ZoomOutRoundedIcon from '@mui/icons-material/ZoomOutRounded';
+import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import { ExternalMockup } from './LoadingMockup';
 
-export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange}) { 
+
+
+export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange,scene}) { 
   const [color, setColor] = useState("#898080"); 
   const [scale,setScale]=useState([1,1,1])
   
@@ -105,13 +116,27 @@ const handleColor=(event)=>{
       <div className="Quantity"> 
         <p>Quantity</p>  
         <div className="List-price"> 
-          <div> <p className="Number"> 1pc</p> <hr /> <p className="Price"> 0.5dt</p></div>  
-          <div> <p className="Number"> 100pc</p> <hr /> <p className="Price"> 0.5dt</p></div> 
-          <div> <p className="Number"> 500pc</p> <hr /> <p className="Price"> 0.5dt</p></div>  
-          <div> <p className="Number"> 1000pc</p> <hr /> <p className="Price"> 0.5dt</p></div>  
-        </div> 
+          <div> <p className="Number"> 1pc</p> <hr /> <p className="Price">   {scene !== null && ( <span>{scene.price*1}</span>)}dt</p></div>  
+          <div> <p className="Number"> 100pc</p> <hr /> <p className="Price">  {scene !== null && ( <span>{scene.price*100}</span>)}dt</p></div> 
+          <div> <p className="Number"> 500pc</p> <hr /> <p className="Price">  {scene !== null && ( <span>{scene.price*500}</span>)}dt</p></div>  
+          <div> <p className="Number"> 1000pc</p> <hr /> <p className="Price">  {scene !== null && ( <span>{scene.price*1000}</span>)}dt</p></div>   
+          {console.log(' scene of Palette', scene )}
+        </div>  
         <input type="number" name="" id="" placeholder="quantité personnalisé" />  
-      </div> 
+      </div>   
+      <p>Preview</p> 
+      {console.log(' scene of Preview', scene )}
+    { /*  <div className='Preview' style={{width:'150px'}}>  
+      <Canvas camera={{ position: [0, 0, 5] }}>
+         
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
+       
+          <ExternalMockup color={'gray'} scale={[1,1,1]} rotation={[0,0,0]}  />
+
+          </Canvas>
+
+  </div>*/}
       <div className="Export">  
         <p>Export</p>
         <select id="imageType" name="imageType">
@@ -134,13 +159,104 @@ const handleColor=(event)=>{
 
 
  export function TopSmallPalette({onDelete}){
-  return(
-  <div className='TopSmallPalette'>  
-   <FaFile style={{width:'30%',color:'rgba(65, 48, 188, 1)'}}/>
-   <FaTrash style={{width:'30%',color:'rgba(65, 48, 188, 1)'}} onClick={onDelete}/>
-   <FaRuler style={{width:'30%',color:'rgba(65, 48, 188, 1)'}}/>  
+  const [projects, setProjects] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const fetchProjects = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/project'); 
+      const data = await response.json();
+      setProjects(data);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    } 
    
-  </div>
+  }; 
+
+
+  const handleViewMore = () => {
+    setShowAllProjects(true);
+    handleClose();
+  };
+
+  return (
+    <div className='TopSmallPalette'>
+      <Tooltip title="History">
+        <IconButton onClick={handleClick}>
+          <FaFile style={{ width: '50%', color: 'navy' }} />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Delete">
+        <IconButton>
+          <FaTrash style={{ width: '50%', color: 'navy' }} onClick={onDelete} />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="Repère">
+        <IconButton>
+          <FaRuler style={{ width: '60%', color: 'navy' }} />
+        </IconButton>
+      </Tooltip>
+
+      {/* Menu for project names */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        id="account-menu"
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: 'visible',
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            mt: 1.5,
+            '& .MuiAvatar-root': {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            '&::before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: 'background.paper',
+              transform: 'translateY(-50%) rotate(45deg)',
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+
+      >
+        {/* Display first three projects or all projects if "View More" clicked */}
+        {projects.slice(0, showAllProjects ? projects.length : 3).map(project => (
+          <MenuItem key={project._id} onClick={handleClose}>{project.project_name}
+          <DriveFileRenameOutlineIcon style={{width:'15%',color:'navy'}}/></MenuItem>
+        ))}
+        {/* Add a "View More" option */}
+        <MenuItem onClick={handleViewMore} >View More</MenuItem>
+      </Menu>
+
+    </div>
   );
 } 
 
@@ -151,25 +267,27 @@ export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ}
   return(
 <div className='BottomSmallPalette'>    
 <IconButton aria-label='RotaionZ'>
-   <RotateLeftIcon sx={{color:'rgba(65, 48, 188, 1)'}} onClick={rotationZ} />  
+   <RotateLeftIcon sx={{color:'navy'}} onClick={rotationZ} />  
 </IconButton>
 <IconButton aria-label='RotaionY'>
-   <SettingsBackupRestoreIcon sx={{color:'rgba(65, 48, 188, 1)'}} onClick={rotationY} />  
+   <SettingsBackupRestoreIcon sx={{color:'navy'}} onClick={rotationY} />  
 </IconButton>
-<FaSyncAlt style={{width:'15%',color:'rgba(65, 48, 188, 1)'}} onClick={rotationX} />
-<FaMinus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}} onClick={zoomout}/> 
-<FaPlus style={{width:'15%',color:'rgba(65, 48, 188, 1)'}} onClick={zoomin}/> 
+<IconButton >
+<FaSyncAlt style={{width:'65%',color:'navy'}} onClick={rotationX} /></IconButton>
+<IconButton >
+<FaMinus style={{width:'60%',color:'navy'}} onClick={zoomout}/> </IconButton>
+<IconButton >
+<FaPlus style={{width:'60%',color:'navy'}} onClick={zoomin}/> </IconButton>
 
-<IconButton aria-label="zoomout" >
-        <ThreeDRotationIcon  sx={{color:'rgba(65, 48, 188, 1)'}}/>
+<IconButton aria-label="3D" >
+        <ThreeDRotationIcon  sx={{color:'navy'}}/>
       </IconButton>
-
-      <IconButton aria-label="zoomout">
-        <LooksTwoIcon  sx={{color:'rgba(65, 48, 188, 1)'}}/>
+      <IconButton aria-label="2D">
+        <LooksTwoIcon  sx={{color:'navy'}}/>
       </IconButton>
-<FaDownload style={{width:'15%',color:'rgba(65, 48, 188, 1)'}}/>  
-
-
+      <IconButton >
+        <FileDownloadRoundedIcon  sx={{color:'navy'}}/>
+      </IconButton>
 
 
 
@@ -194,10 +312,10 @@ export function RightSmallPalette({zoomin,zoomout,OpenClose}){
     <Box sx={{height:"25%",position: "absolute",
   right: 0,marginRight:"17%",display:"flex",flexDirection:"column",alignItems:"center"}}> 
   <IconButton aria-label="zoomin" onClick={zoomin}>
-        <AddIcon/>
+        <ZoomInRoundedIcon/>
       </IconButton> 
       <IconButton aria-label="zoomout" onClick={zoomout}>
-        <RemoveIcon/>
+        <ZoomOutRoundedIcon/>
       </IconButton>
     <Slider
   sx={{
