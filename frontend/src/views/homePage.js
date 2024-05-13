@@ -31,13 +31,14 @@ import submission from '../assets/submission.png'
 import Market from '../assets/market.png'
 import AI from '../assets/AI.png'
 import Dashboard from '../assets/dashboard.png'
-import { Link } from '@material-ui/core'
+//import { Link } from '@material-ui/core'
 import Button from '@mui/material/Button';
 import { useState, useEffect } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
+import InputBase from '@mui/material/InputBase'; 
+import { Link } from 'react-router-dom';
 const drawerWidth = 240;
 
 export default function HomePage({id}) {
@@ -399,14 +400,25 @@ const deleteProject = async (_id) => {
                                         src={PackagingLogo}
                                         alt="Packaging"
                                         style={{ maxWidth: '50%', maxHeight: '50%', width: 'auto', height: 'auto' }}
-                                    />
+                                    /> 
+                                    {
+                                      console.log("homepage id avant link",id)
+                                    }
                                     <Typography
                                         variant="h6"
                                         component="div"
                                         sx={{ fontWeight: 'bold', color: 'navy', textAlign: 'center' }}
+
                                     >
-                                        <Link to={`/Tool?id=${id}`} >Packaging</Link>
-                                    </Typography>
+                                      
+                                    
+                                        <Link to={`/Tool?id=${id}`} >Packaging</Link> 
+                                      
+                                    </Typography> 
+                                    {
+                                      console.log("homepage id apres link",id)
+                                    }
+
                                 </Box>
                                 <Box
                                     height={200}
@@ -430,7 +442,7 @@ const deleteProject = async (_id) => {
                                         component="div"
                                         sx={{ fontWeight: 'bold', color: 'navy', textAlign: 'center' }}
                                     >
-                                        <Link href="/Tool" >Etiquette</Link>
+                                        <Link  >Etiquette</Link>
                                     </Typography>
                                 </Box>
                             </Box>
@@ -465,11 +477,17 @@ const deleteProject = async (_id) => {
                     </Paper>
                 
             ))}
-        </ul>
+        </ul> 
+       
         
                     </Box>
-                )}  
-                {console.log("home id",id)}
+
+
+                )}   
+                {
+                  console.log("homePageid",id)
+                }
+
       </Box>
       
     </Box>

@@ -28,5 +28,6 @@ router.get('/users/:userId', async (req, res) => {
       res.status(500).json({ error: 'Failed to fetch user projects' });
     }
   });
+
 module.exports = router;
 

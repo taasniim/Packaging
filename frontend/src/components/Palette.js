@@ -26,13 +26,15 @@ import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutli
 import ZoomInRoundedIcon from '@mui/icons-material/ZoomInRounded';
 import ZoomOutRoundedIcon from '@mui/icons-material/ZoomOutRounded';
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import { ExternalMockup } from './LoadingMockup';
+import { useLocation } from 'react-router-dom';
 
 
 
 
-
-
-export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange}) { 
+export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange,scene}) { 
   const [color, setColor] = useState("#898080"); 
   const [scale,setScale]=useState([1,1,1])
   
@@ -116,13 +118,27 @@ const handleColor=(event)=>{
       <div className="Quantity"> 
         <p>Quantity</p>  
         <div className="List-price"> 
-          <div> <p className="Number"> 1pc</p> <hr /> <p className="Price"> 0.5dt</p></div>  
-          <div> <p className="Number"> 100pc</p> <hr /> <p className="Price"> 0.5dt</p></div> 
-          <div> <p className="Number"> 500pc</p> <hr /> <p className="Price"> 0.5dt</p></div>  
-          <div> <p className="Number"> 1000pc</p> <hr /> <p className="Price"> 0.5dt</p></div>  
-        </div> 
+          <div> <p className="Number"> 1pc</p> <hr /> <p className="Price">   {scene !== null && ( <span>{scene.price*1}</span>)}dt</p></div>  
+          <div> <p className="Number"> 100pc</p> <hr /> <p className="Price">  {scene !== null && ( <span>{scene.price*100}</span>)}dt</p></div> 
+          <div> <p className="Number"> 500pc</p> <hr /> <p className="Price">  {scene !== null && ( <span>{scene.price*500}</span>)}dt</p></div>  
+          <div> <p className="Number"> 1000pc</p> <hr /> <p className="Price">  {scene !== null && ( <span>{scene.price*1000}</span>)}dt</p></div>   
+          {console.log(' scene of Palette', scene )}
+        </div>  
         <input type="number" name="" id="" placeholder="quantité personnalisé" />  
-      </div> 
+      </div>   
+      <p>Preview</p> 
+      {console.log(' scene of Preview', scene )}
+    { /*  <div className='Preview' style={{width:'150px'}}>  
+      <Canvas camera={{ position: [0, 0, 5] }}>
+         
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
+       
+          <ExternalMockup color={'gray'} scale={[1,1,1]} rotation={[0,0,0]}  />
+
+          </Canvas>
+
+  </div>*/}
       <div className="Export">  
         <p>Export</p>
         <select id="imageType" name="imageType">
@@ -159,11 +175,11 @@ const handleColor=(event)=>{
     setAnchorEl(null);
   };
   
-
+  const searchParams = new URLSearchParams(useLocation().search);
   const fetchProjects = async () => {
     try {
-      // Récupérer l'ID de l'utilisateur depuis le stockage local ou tout autre mécanisme d'authentification
-      const userId = localStorage.getItem('663d431ae326dd99633fb8f0'); // Adapté à votre méthode d'authentification
+      
+      const userId = searchParams.get('id');
   
       // Vérifier si l'ID de l'utilisateur est disponible
       if (!userId) {
@@ -183,6 +199,8 @@ const handleColor=(event)=>{
     setAnchorEl(event.currentTarget);
     await fetchProjects();
   };
+
+
 
   const handleViewMore = () => {
     setShowAllProjects(true);

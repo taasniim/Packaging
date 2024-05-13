@@ -7,24 +7,31 @@ import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
 import { useId } from "react";
 
 
-function App() {
-  const [idUser,setUserId]= useState(null)
+
+ function App() { 
+
+
+  const  [idUser,setUserID]=useState(null);
+
 
 const updateId=(id)=>{
-  setUserId(id);
+setUserID(id); 
 }
-
   return (
     <div className="app">
-      
-    <Router>
+      {console.log('tool1',idUser)}
+    <Router> 
+    {console.log('tool2',idUser)}
     <Routes>
+
       
     <Route exact path="/home" element={<HomePage id={idUser}/>} />
     {console.log("app js id",idUser)}
     <Route exact path="/" element={<Login  updateid={updateId}/>} />
       <Route exact path="/signup" element={<Signup/>} />
-      <Route exact path="/Tool" element={<Tool/>} />
+
+      <Route exact path="/Tool" element={<Tool />} />
+      {console.log('tool3',idUser)}
     </Routes>
     </Router> 
     </div>

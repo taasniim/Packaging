@@ -5,8 +5,8 @@ import { useLocation } from 'react-router-dom';
 
 
 
+function Tool (){ 
 
-function Tool ({id}){
   const searchParams = new URLSearchParams(useLocation().search);
   const idUser = searchParams.get('id');
   return (
