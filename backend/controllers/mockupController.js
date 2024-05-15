@@ -1,6 +1,7 @@
 const Mockup = require('../models/mockupModel')
 const asyncHandler = require('express-async-handler')
 
+//tjik req t9ollek hetkol chy traj3elha kol chy le bi id la chy
 const getMockups= asyncHandler(async(req,res) =>{
     try{
         
@@ -13,7 +14,7 @@ const getMockups= asyncHandler(async(req,res) =>{
         throw new Error(error.message);
     }
 })
-// get a single mockup
+// tjik req t9ollek 7achti bmockup mou3ayna traje3halha 
 const getOneMockup= asyncHandler(async(req,res) =>{
     try{
         const{id}=req.params;
@@ -27,7 +28,7 @@ const getOneMockup= asyncHandler(async(req,res) =>{
     }
 })
 
-//create mockup
+//create mockup: tjik req ta3tik ma3loumet 3al mockuop fel body mte3ha w t9ollek asne3hali donc tasna3ha bel create w traja3ha fel res
 const createMockup =asyncHandler(async(req,res) =>{
     try{
         
@@ -39,7 +40,7 @@ const createMockup =asyncHandler(async(req,res) =>{
         throw new Error(error.message);
     }
 })
-//update mockup
+//update mockup : bech tjik req t9ollek brabi updatili el mockup hedi elli el id fel param mte3i w t9ollek hwaka el info fel body 
 const updatemockup=asyncHandler(async(req,res)=> {
     try {
         const {id}=req.params;
@@ -55,7 +56,7 @@ const updatemockup=asyncHandler(async(req,res)=> {
         throw new Error(error.message);
     }
 })
-//delete mockup
+//delete mockup: bech tjik req t9ollek el maquette eli el id mte3ha fel params mte3i n7ebek tfdas5ha w tfasa5ha 
 const deleteMockup = asyncHandler(async(req,res)=> {
     try {
         const {id}=req.params;

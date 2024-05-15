@@ -1,5 +1,7 @@
-const mongoose= require('mongoose')
-const userSchema = mongoose.Schema(
+const mongoose= require('mongoose') 
+const Schema=mongoose.Schema 
+//3malna schema lel user 
+const userSchema = new Schema(
     {
         full_name:{
             type:String,

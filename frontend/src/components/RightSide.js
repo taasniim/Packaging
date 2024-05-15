@@ -1,14 +1,20 @@
 // comme le left side c'est la partie qui contient le logo, le parametre et le photo de profile, le rigt side va contient tous les autre component 
+import { useState } from "react";
 import Header from "../components/Header"; 
 import Main from "./Main";
 
-function RightSide(){
-  return(
+function RightSide(){ 
+  const [projectname,setProjectName]=useState('') 
+  const handleProjectName=(name)=>{
+    setProjectName(name);
+  }
+  return( 
+   
     <div className="RightSide"> 
     
-      <Header/> 
-      <Main/> 
-    
+      <Header onChangeNameproject={handleProjectName}/> 
+      <Main projectname={projectname} /> 
+    {console.log('title og project right side ',projectname)}
     </div>
   )
 } 

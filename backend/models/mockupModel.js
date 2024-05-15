@@ -1,5 +1,6 @@
-const mongoose= require('mongoose')
-const mockupSchema = mongoose.Schema(
+const mongoose= require('mongoose') 
+const Schema=mongoose.Schema
+const mockupSchema = new Schema(
     {
         Packaging_name:{
             type:String,
@@ -27,7 +28,39 @@ const mockupSchema = mongoose.Schema(
             required:true, 
             default:0
             
-        }
+        },
+        color:{
+            type:String,
+            default:'gray',
+            required:true,
+        } ,
+        size:{
+           x: {
+            type: Number,
+            required:true,
+
+            } ,
+           y: {
+                type: Number,
+                required:true,
+    
+                },
+              z:  {
+                    type: Number,
+                    required:true,
+        
+                    }
+                } ,
+
+                price:{
+                    type: Number,
+                      required:true,
+                },
+                material:{
+                    type:String,
+                    required:false,
+                } ,
+               
        
         
     },

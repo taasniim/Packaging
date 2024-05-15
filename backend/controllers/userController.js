@@ -46,11 +46,12 @@ const getAllUsers= asyncHandler(async(req,res) =>{
         throw new Error(error.message);
     }
 })
-// get a single user
+// bech tjini req fiha el id bech ne5dhou n nrod response fiha el user 
 const getOneUser = asyncHandler(async(req,res) =>{
     try{
         const{id}=req.params;
-        const user = await User.findById(id);
+        const user = await User.findById(id); 
+        //res.status(200) ya3ni its okey 
         res.status(200).json(user);
         
     }catch(error){
@@ -60,18 +61,21 @@ const getOneUser = asyncHandler(async(req,res) =>{
     }
 })
 
-//update user
+//req dima kima fel postmane tjini bel param fel http w tjini zeda b body donc eni bech ne5ou el param bech n7addeb bih ey  user w bech ne5ou el body n updatin bi donc n3ayet lel function finbyidand update 
 const updateUser=asyncHandler(async(req,res)=> {
-    try {
+    try {  
+        
         const {id}=req.params;
         const user =await User.findByIdAndUpdate(id,req.body);
         //cannot find any mockup in db 
-        if(!user){
+        if(!user){ 
+            //response 404 w message rani ma l9itouch
             return res.status(404).json({message:'cannot found user with id:${id}'})
         }
-        const updatedUser = await User.findById(id);
+        const updatedUser = await User.findById(id);//houwa saye elle est mis ajour ama just hna bech n7ottou fi variable bech nraj3ou 3al 5ater el function finBuIDAndUpdate en fait traje3 el user 9bal ma tsirlou update : const user =await User.findByIdAndUpdate(id,req.body);
         res.status(200).json(updatedUser);
-    } catch (error) {
+    } catch (error) { 
+        //sinon sar ay error a5er fi serveur nraj3ou el messge 
         res.status(500);
         throw new Error(error.message);
     }
@@ -84,7 +88,7 @@ const deleteUser = asyncHandler(async(req,res)=> {
         //cannot find any user in db 
         if(!user){
             res.status(404);
-            throw new Error(`cannot found mockup with id ${id}`);
+            throw new Error(`cannot found user with id ${id}`);
         }
        
         res.status(200).json("user deleted");

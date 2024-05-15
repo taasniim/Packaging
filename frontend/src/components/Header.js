@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaArrowLeft, FaPlus, FaAngleLeft, FaAngleRight, FaImage } from 'react-icons/fa';
 import firstParticipant from '../assets/firstParticipant.jpg';
 import secondParticipant from '../assets/second-participant.jpg';
@@ -11,19 +11,28 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box'; 
 
 
-function Header() { 
-  
+function Header({onChangeNameproject}) { 
+  const [projectName, setProjectName] = useState('');
+
+  const handleInputChange = (e) => {
+    setProjectName(e.target.value); 
+    onChangeNameproject(e.target.value)
+  };
   return (
     <div className="Header"> 
       <div className="Left">  
       <Link to="/home" >
       <IconButton>
-          <ArrowBackIcon style={{ width: '50%', color: 'navy' }}  />
-        </IconButton> 
-        </Link>
-        <p className="Titre">Tool de conception d'emballage</p>
-      </div>  
+          <ArrowBackIcon style={{ width: '50%', color: 'navy' }}  /> 
+         
+             </IconButton> 
+        </Link> 
+        <p className="Titre">Tool de conception d'emballage</p> 
+        <input className="InputWithTitle" placeholder="Project name"  value={projectName}
+          onChange={handleInputChange}></input>   
 
+      </div>  
+{console.log('header project name ', projectName)}
       <div className="Right">  
         <div className="First-container">  
         

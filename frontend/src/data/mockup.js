@@ -14,49 +14,57 @@ export const  ExternalList=[
     id:1,
     src:object1,  
    price:0.5,
-    model:"box11.glb"
+    model:"box11.glb" ,
+    preview:"viedomokup.mp4"
   }, 
   {
     id:2,
     src:object1, 
     price:1,
-    model:"botlle1111.glb"
+    model:"botlle1111.glb" ,
+    preview:"viedomokup.mp4"
   },
   {
     id:3,
     src:object2, 
     price:0.3,
-    model:"box11.glb"
+    model:"box11.glb",
+    preview:"viedomokup.mp4"
   },
   {
     id:4,
     src:object2, 
     price:0.4,
-    model:"box11.glb"
+    model:"box11.glb",
+    preview:"viedomokup.mp4"
   },
   {
     id:5,
     src:object1, 
    price:0.6,
-    model:"box11.glb"
+    model:"box11.glb",
+    preview:"viedomokup.mp4"
   },
   {
     id:6,
     src:object1, 
     price:0.8,
-    model:"box11.glb"
+    model:"box11.glb",
+    preview:"viedomokup.mp4"
   },
   {
     id:7,
     src:object2, 
   price:1.25,
-    model:"box11.glb"
+    model:"box11.glb",
+    preview:"viedomokup.mp4"
   },
   {
     id:8,
     src:object2, 
    price:1.5,
-    model:"box11.glb"
+    model:"box11.glb",
+    preview:"viedomokup.mp4"
   },
 ] ; 
 

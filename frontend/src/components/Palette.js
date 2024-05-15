@@ -28,14 +28,15 @@ import ZoomOutRoundedIcon from '@mui/icons-material/ZoomOutRounded';
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { ExternalMockup } from './LoadingMockup';
-
-
-
+import { ExternalMockup,Preview,Mockup } from './LoadingMockup';
+import { FaPause } from 'react-icons/fa';
+import Scene from './Scene';
+import axios from 'axios';
 export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange,scene}) { 
-  const [color, setColor] = useState("#898080"); 
+  const [color, setColor] = useState("#FFFFFF");  
+  const [dispalyPreview,setdisplayPreview]=useState(false);
   const [scale,setScale]=useState([1,1,1])
-  
+  const [materialType, setMaterialType]= useState(null);  
   const handlesize=(event)=>{ 
     const id= parseInt(event.target.id);
     const value=parseFloat(event.target.value);  
@@ -81,7 +82,13 @@ const handleColor=(event)=>{
 
   
   const handleMaterialChange =(newMaterialType) =>{
-    onMaterialChange( newMaterialType);
+    setMaterialType(newMaterialType) 
+    
+    onMaterialChange( newMaterialType); 
+  
+  } 
+  const onClickdisplayPreview=()=>{
+    setdisplayPreview(!dispalyPreview);
   }
 
 
@@ -126,17 +133,22 @@ const handleColor=(event)=>{
       </div>   
       <p>Preview</p> 
       {console.log(' scene of Preview', scene )}
-    { /*  <div className='Preview' style={{width:'150px'}}>  
-      <Canvas camera={{ position: [0, 0, 5] }}>
-         
-          <ambientLight />
-          <pointLight position={[10, 10, 10]} />
-       
-          <ExternalMockup color={'gray'} scale={[1,1,1]} rotation={[0,0,0]}  />
+    
+    <div className={`Preview ${dispalyPreview? 'active' : 'inactive'}`} style={{width:'170px'}} onClick={onClickdisplayPreview}>  
+  
+  <Canvas>
+  <ambientLight /> 
+  <pointLight position={[10, 10, 10]} />  
 
-          </Canvas>
+       {scene && <Preview color={color} scale={scale} displayPreview={dispalyPreview}/>}
 
-  </div>*/}
+  </Canvas>
+
+
+        
+
+  </div>
+  {console.log('sceeeeeeeeeeeene de preview',scene)}
       <div className="Export">  
         <p>Export</p>
         <select id="imageType" name="imageType">
@@ -158,7 +170,7 @@ const handleColor=(event)=>{
 
 
 
- export function TopSmallPalette({onDelete}){
+ export function TopSmallPalette({onDelete,onClickRule}){
   const [projects, setProjects] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [showAllProjects, setShowAllProjects] = useState(false);
@@ -206,7 +218,7 @@ const handleColor=(event)=>{
       </Tooltip>
       <Tooltip title="Repère">
         <IconButton>
-          <FaRuler style={{ width: '60%', color: 'navy' }} />
+          <FaRuler style={{ width: '60%', color: 'navy' }} onClick={onClickRule} />
         </IconButton>
       </Tooltip>
 
@@ -262,8 +274,23 @@ const handleColor=(event)=>{
 
 
 
-export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ}){ 
-  
+export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ,projectname}){ 
+  const createProject= async()=>{ 
+    if (projectname.length===0){
+      return;
+    }
+   
+      try{ 
+        const project={
+          project_name:projectname,
+        }
+      
+      await axios.post('http://localhost:5000/api/project',project)
+      }
+    catch(error){
+      console.error('Error while saving project:', error);
+    }
+  }
   return(
 <div className='BottomSmallPalette'>    
 <IconButton aria-label='RotaionZ'>
@@ -271,7 +298,7 @@ export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ}
 </IconButton>
 <IconButton aria-label='RotaionY'>
    <SettingsBackupRestoreIcon sx={{color:'navy'}} onClick={rotationY} />  
-</IconButton>
+</IconButton> 
 <IconButton >
 <FaSyncAlt style={{width:'65%',color:'navy'}} onClick={rotationX} /></IconButton>
 <IconButton >
@@ -286,10 +313,10 @@ export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ}
         <LooksTwoIcon  sx={{color:'navy'}}/>
       </IconButton>
       <IconButton >
-        <FileDownloadRoundedIcon  sx={{color:'navy'}}/>
+        <FileDownloadRoundedIcon  sx={{color:'navy'}} onClick={createProject}/>
       </IconButton>
 
-
+{console.log('project name filedownlod icon',projectname)}
 
 </div>);
 } 

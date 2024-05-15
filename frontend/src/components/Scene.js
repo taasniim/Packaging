@@ -5,18 +5,21 @@ import { ExternalMockup,InternalMockup,Mockup} from "./LoadingMockup";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { TopSmallPalette, BottomSmallPalete, RightSmallPalette } from "./Palette"; 
+import Ruler from "@scena/react-ruler"; 
+import { height, width } from "@mui/system";
 
 
 
+const Scene = ({ color ,texture ,size , materialType,TypeOfObject,updateValueOfScene, projectname}) => {
 
-const Scene = ({ color ,texture ,size , materialType,TypeOfObject,updateValueOfScene}) => {
-
-  const [scene, setScene] = useState(null);
+  const [scene, setScene] = useState(null); 
+  
   const [scale,setScale]=useState(size); 
 const [rotation,setRotation]=useState([0,0,0]);  
-const[OpenClose,setOpenClose]=useState(0)
-console.log("hello scale scene",scale); 
-console.log("hello size scene",size);
+const[OpenClose,setOpenClose]=useState(0) 
+const [Rule,setRule]=useState(false);
+ 
+
 
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -30,8 +33,10 @@ console.log("hello size scene",size);
   const addMocupToScene = (id) => {
     const mockup = ExternalList.find((mockup) => mockup.id === id);
     if (mockup) {
-      setScene(mockup); 
-      updateValueOfScene(mockup)
+      setScene(mockup);  
+     
+      updateValueOfScene(mockup)  
+      
     }  
    
   
@@ -75,31 +80,47 @@ console.log("hello size scene",size);
   const handleOpenClose=( value)=>{
     setOpenClose(value);  
     
+  } 
+  const displayRule=()=>{
+    setRule(!Rule);
   }
   return (
-    <div className="Scene">
-      <TopSmallPalette onDelete={clearScene} /> 
+    <div className="Scene">   
+    { Rule &&(
+     <div className="horizentalRuler " > <Ruler backgroundColor="rgba(250, 250, 251, 1)" textColor="black" ></Ruler> </div>  
+    
+     ) }  
+      { Rule &&(
+     <div className="verticalRuler " > <Ruler type="vertical"  backgroundColor="rgba(250, 250, 251, 1)" textColor="black" ></Ruler> </div>  
+    
+     ) } 
 
+
+   
+     {/* <Ruler type="horizontal" backgroundColor=" rgba(250, 250, 251, 1)" style={{height:"5%"}}/> */}
+      <TopSmallPalette onDelete={clearScene} onClickRule={displayRule} /> 
+     
       {
         TypeOfObject===ExternalList? (
           <RightSmallPalette zoomin={Zoomin} zoomout={Zoomout} OpenClose={handleOpenClose}/>
         ) : null
       }
 
-      <div className="RealScene" ref={drop} style={{ width: "95%", height: "80%", alignContent: "center" }}>
-        <Canvas camera={{ position: [0, 0, 5] }}>
+      <div className="RealScene" ref={drop} style={{ width: "95%", height: "70%", alignContent: "center", marginBottom:'0%'}}>
+        <Canvas camera={{ position: [0, 0, 5] }} style={{display:'inline-block'}}>
          
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
-          <OrbitControls /> 
-          {scene !== null && (
-  console.log("scene 1", scene.id)
-)}
+          <OrbitControls />  
+
+          
+          {console.log("material tyoe scene",materialType)}
 
           
           {scene && (
   TypeOfObject === ExternalList ? (
     <ExternalMockup color={color} scale={scale} rotation={rotation} texture={texture} material={materialType} Animation={OpenClose} />
+    
   ) : (
     <InternalMockup scale={scale} rotation={rotation} />
   )
@@ -109,7 +130,7 @@ console.log("hello size scene",size);
 
 } 
 {scene !== null && (
-  console.log("scene 2", scene.id)
+  console.log("scene  de la sceeeeeeeeeen", scene)
 )}
 
 
@@ -121,7 +142,8 @@ console.log("hello size scene",size);
          
         </Canvas>
       </div>
-      <BottomSmallPalete zoomin={Zoomin} zoomout={Zoomout} rotationX={RotationX} rotationY={RotationY} rotationZ={RotationZ}/>
+      <BottomSmallPalete zoomin={Zoomin} zoomout={Zoomout} rotationX={RotationX} rotationY={RotationY} rotationZ={RotationZ} projectname={projectname}/> 
+      {console.log('project name apres bottome small palette',projectname)}
     </div>
   );
 };
