@@ -28,10 +28,12 @@ import ZoomOutRoundedIcon from '@mui/icons-material/ZoomOutRounded';
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+
 import { ExternalMockup,Preview,Mockup } from './LoadingMockup';
 import { FaPause } from 'react-icons/fa';
 import Scene from './Scene';
 import axios from 'axios';
+
 export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange,scene}) { 
   const [color, setColor] = useState("#FFFFFF");  
   const [dispalyPreview,setdisplayPreview]=useState(false);
@@ -176,27 +178,22 @@ const handleColor=(event)=>{
   const [showAllProjects, setShowAllProjects] = useState(false);
 
   useEffect(() => {
-    fetchProjects();
+   
   }, []);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  
 
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+ 
 
-  const fetchProjects = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/project'); 
-      const data = await response.json();
-      setProjects(data);
-    } catch (error) {
-      console.error('Error fetching projects:', error);
-    } 
-   
-  }; 
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  
+  };
+
 
 
   const handleViewMore = () => {

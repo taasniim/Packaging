@@ -29,6 +29,7 @@ const mockupSchema = new Schema(
             default:0
             
         },
+
         color:{
             type:String,
             default:'gray',
@@ -61,6 +62,7 @@ const mockupSchema = new Schema(
                     required:false,
                 } ,
                
+
        
         
     },

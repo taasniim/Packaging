@@ -44,7 +44,9 @@ const Login = ({updateid}) => {
         // Assuming response status is 200 (OK)
         const data = await response.json(); 
         console.log('data login',data.data._id);
-        setUserID(data.data._id)  
+
+        setUserID(data.data._id) 
+
         updateid(data.data._id)
         console.log('data login userid',data.data._id);
         // Handle successful login (e.g., store token, redirect user)

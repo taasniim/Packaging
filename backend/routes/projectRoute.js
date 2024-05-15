@@ -14,11 +14,13 @@ router.post('/',createProject)
 router.put('/:id',updateProject)
 // /api/project/:id
 router.delete('/:id',deleteProject)
+
 //  /api/project/:userId
 router.get('/:userId',getAllProjectsbyuser) 
 
 // /api/project/:UserId/:id 
 router.get('/:userId/:id',getoneProjectbyuser)
+
 
 module.exports = router;
 

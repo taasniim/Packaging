@@ -6,10 +6,13 @@ import Scene from "./Scene";
 import { useState } from "react";
 import { ExternalList,InternalList } from "../data/mockup";
 
-function Main({projectname}){  
-  const [scene,setScene]=useState(null); 
 
+
+function Main({projectname}){ 
+
+  const [scene,setScene]=useState(null);
   const [color, setColor] = useState("#FFFFFF");
+
   const [texture, setTexture] = useState(null);
 
 const [scale,setScale]=useState([1,1,1]) ;

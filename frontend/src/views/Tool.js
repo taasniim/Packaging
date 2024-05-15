@@ -4,8 +4,14 @@ import RightSide from "../components/RightSide";
 import { useLocation } from 'react-router-dom';
 
 
-function Tool (){  
+
  
+ 
+
+
+function Tool (){ 
+
+
   const searchParams = new URLSearchParams(useLocation().search);
   const idUser = searchParams.get('id');
   return (

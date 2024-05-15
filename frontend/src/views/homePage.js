@@ -66,13 +66,23 @@ export default function HomePage({id}) {
   }, [selectedTab]);
 
   const fetchProjects = async () => {
-      try {
-          const response = await fetch('http://localhost:5000/api/project');
-          const data = await response.json();
-          setProjects(data);
-      } catch (error) {
-          console.error('Error fetching projects:', error);
+    try {
+      
+      const userId =id 
+  
+      // Vérifier si l'ID de l'utilisateur est disponible
+      if (!userId) {
+        console.error('User ID not available');
+        return;
       }
+  
+      // Faire une requête à l'API avec l'ID de l'utilisateur
+      const response = await fetch(`http://localhost:5000/api/project/users/${userId}`);
+      const data = await response.json();
+      setProjects(data);
+    } catch (error) {
+      console.error('Error fetching user projects:', error);
+    }
   };
   // Fonction pour mettre à jour un projet
   const updateProject = async (_id) => {
@@ -398,7 +408,9 @@ const deleteProject = async (_id) => {
                                         variant="h6"
                                         component="div"
                                         sx={{ fontWeight: 'bold', color: 'navy', textAlign: 'center' }}
-                                    > 
+
+                                    >
+                                      
                                     
                                         <Link to={`/Tool?id=${id}`} >Packaging</Link> 
                                       
@@ -406,6 +418,7 @@ const deleteProject = async (_id) => {
                                     {
                                       console.log("homepage id apres link",id)
                                     }
+
                                 </Box>
                                 <Box
                                     height={200}
@@ -468,10 +481,13 @@ const deleteProject = async (_id) => {
        
         
                     </Box>
+
+
                 )}   
                 {
                   console.log("homePageid",id)
                 }
+
       </Box>
       
     </Box>
