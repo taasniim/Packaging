@@ -11,7 +11,7 @@ const projectSchema = mongoose.Schema(
         }, 
         owner:{type: mongoose.Schema.Types.ObjectId,ref:'User'},
         members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-        mockup: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Mockup' }]
+        mockups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Mockup' }]
        
     },
     {

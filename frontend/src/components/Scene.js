@@ -10,7 +10,7 @@ import { height, width } from "@mui/system";
 
 
 
-const Scene = ({ color ,texture ,size , materialType,TypeOfObject,updateValueOfScene, projectname}) => {
+const Scene = ({ color ,texture ,size , materialType,TypeOfObject,updateValueOfScene, projectname,idUser}) => {
 
   const [scene, setScene] = useState(null); 
   
@@ -98,7 +98,7 @@ const [Rule,setRule]=useState(false);
 
    
      {/* <Ruler type="horizontal" backgroundColor=" rgba(250, 250, 251, 1)" style={{height:"5%"}}/> */}
-      <TopSmallPalette onDelete={clearScene} onClickRule={displayRule} /> 
+      <TopSmallPalette onDelete={clearScene} onClickRule={displayRule} idUser={idUser} /> 
      
       {
         TypeOfObject===ExternalList? (

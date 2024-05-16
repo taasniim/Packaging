@@ -172,15 +172,25 @@ const handleColor=(event)=>{
 
 
 
- export function TopSmallPalette({onDelete,onClickRule}){
+ export function TopSmallPalette({onDelete,onClickRule,idUser}){
   const [projects, setProjects] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [showAllProjects, setShowAllProjects] = useState(false);
 
   useEffect(() => {
-   
-  }, []);
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/project/${idUser}`); 
+        
+        setProjects(response.data);
+        
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
+    fetchProjects();
+  }, []); 
   
 
   const handleClose = () => {
@@ -257,7 +267,7 @@ const handleColor=(event)=>{
 
       >
         {/* Display first three projects or all projects if "View More" clicked */}
-        {projects.slice(0, showAllProjects ? projects.length : 3).map(project => (
+        {projects.slice(0, showAllProjects ? projects.length : 6).map(project => (
           <MenuItem key={project._id} onClick={handleClose}>{project.project_name}
           <DriveFileRenameOutlineIcon style={{width:'15%',color:'navy'}}/></MenuItem>
         ))}

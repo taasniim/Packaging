@@ -17,8 +17,8 @@ function Tool (){
   return (
     <div className="Tool">  
     <LeftSide></LeftSide> 
-    <RightSide></RightSide> 
-
+    <RightSide idUser={idUser}></RightSide> 
+    {console.log('idddddddddd',idUser)}
     </div>
   );
 } 

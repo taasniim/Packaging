@@ -3,7 +3,7 @@ import { useState } from "react";
 import Header from "../components/Header"; 
 import Main from "./Main";
 
-function RightSide(){ 
+function RightSide({idUser}){ 
   const [projectname,setProjectName]=useState('') 
   const handleProjectName=(name)=>{
     setProjectName(name);
@@ -13,7 +13,7 @@ function RightSide(){
     <div className="RightSide"> 
     
       <Header onChangeNameproject={handleProjectName}/> 
-      <Main projectname={projectname} /> 
+      <Main projectname={projectname} idUser={idUser} /> 
     {console.log('title og project right side ',projectname)}
     </div>
   )

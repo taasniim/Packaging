@@ -8,7 +8,7 @@ import { ExternalList,InternalList } from "../data/mockup";
 
 
 
-function Main({projectname}){ 
+function Main({projectname,idUser}){ 
 
   const [scene,setScene]=useState(null);
   const [color, setColor] = useState("#FFFFFF");
@@ -60,7 +60,7 @@ const updateScene=(mockup)=>{
 <Library handleMain={handleMain}/> 
 
 
-<Scene color={color} texture={texture} size={scale}  material={materialType} TypeOfObject={Listes} updateValueOfScene={updateScene} projectname={projectname}/> 
+<Scene color={color} texture={texture} size={scale}  material={materialType} TypeOfObject={Listes} updateValueOfScene={updateScene} projectname={projectname} idUser={idUser}/> 
 { 
   Listes === InternalList ? (<div style={{background:"rgba(238, 239, 243, 1)"}}></div>) : (
     <Palette onColorChange={handleColorChange} onTextureChange={handleTextureChange} onSizechange={handleSizeChange} onMaterialChange={handleMaterialChange} scene={scene}/> 

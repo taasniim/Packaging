@@ -1,11 +1,8 @@
-const mongoose= require('mongoose') 
+const mongoose= require('mongoose')  
 const Schema=mongoose.Schema
 const mockupSchema = new Schema(
     {
-        Packaging_name:{
-            type:String,
-            required:[true,"please enter a name"]
-        },
+      
         reference:{
             type: "String",
             required: true ,
@@ -25,10 +22,11 @@ const mockupSchema = new Schema(
         },
         quantity:{
             type: Number ,
-            required:true, 
+            required:false, 
             default:0
             
-        },
+        },  
+       
 
         color:{
             type:String,
@@ -67,7 +65,7 @@ const mockupSchema = new Schema(
         
     },
     {
-        timestamps: true
+        timestamps: true // el variable hedha pour ajoouter les deux champs createdAt updatedAt
     }
 )
 

@@ -14,11 +14,7 @@ const projectRoute=require('./routes/projectRoute')
 const PORT= process.env.PORT || 5000
 const MONGO_URL = process.env.MONGO_URL
 const errorMiddleware = require('./middelware/errorMiddleware')
-//si on veux limité l'accée au bd
-/*var corsOptions = {
-    origin: 'http://example.com',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }*/
+
   
 
 
@@ -47,7 +43,7 @@ mongoose.set("strictQuery",false)
 mongoose.connect(MONGO_URL).then(()=>{
     console.log("Connected to MongoDB");
     app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
+        console.log(`Server is running on port  ${PORT}`);
       });
 }).catch((error)=>{
     console.log(error);
