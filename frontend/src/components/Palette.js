@@ -281,15 +281,16 @@ const handleColor=(event)=>{
 
 
 
-export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ,projectname}){ 
+export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ,projectname,idUser}){ 
   const createProject= async()=>{ 
-    if (projectname.length===0){
+    if (projectname.length===0 || !idUser){
       return;
     }
    
       try{ 
         const project={
-          project_name:projectname,
+          project_name:projectname, 
+          owner:idUser
         }
       
       await axios.post('http://localhost:5000/api/project',project)

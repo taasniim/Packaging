@@ -142,7 +142,7 @@ const [Rule,setRule]=useState(false);
          
         </Canvas>
       </div>
-      <BottomSmallPalete zoomin={Zoomin} zoomout={Zoomout} rotationX={RotationX} rotationY={RotationY} rotationZ={RotationZ} projectname={projectname}/> 
+      <BottomSmallPalete zoomin={Zoomin} zoomout={Zoomout} rotationX={RotationX} rotationY={RotationY} rotationZ={RotationZ} projectname={projectname} idUser={idUser}/> 
       {console.log('project name apres bottome small palette',projectname)}
     </div>
   );
