@@ -58,13 +58,24 @@ const mockupSchema = new Schema(
                 material:{
                     type:String,
                     required:false,
-                } ,
-               idBasedModel:{
+                } , 
+                //el id hedha no9sod bih el id ta3 el model de base 
+               id:{
                 type:Number,
                 required:true,
+               },
+               //el image elli tormoz lel model 
+               src:{
+                type:String, 
+                required:true,
+               } ,
+               //el model 3D ta3 el maquette 
+               model:{
+                type:String,
+                required:true
                }
 
-       
+               
         
     },
     {

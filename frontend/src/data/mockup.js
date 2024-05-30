@@ -28,7 +28,7 @@ export const  ExternalList=[
     id:2,
     src:object1, 
     price:1,
-    model:"botlle1111.glb" ,
+    model:"box11.glb" ,
  
   },
   { 
@@ -113,7 +113,7 @@ export const  InternalList=[
   {
     id:2,
     src:internal2, 
-    color:"blue",
+   
     x:3,
     y:4,
     z:3, 

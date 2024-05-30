@@ -8,7 +8,7 @@ import { ExternalList,InternalList } from "../data/mockup";
 
 
 
-function Main({projectname,idUser,updateSceneForRightSide}){ 
+function Main({projectname,idUser,updateSceneForRightSide,updateColorForRightSide,updateTextureForRightSide,updateSizeForRightSide}){ 
 
   const [scene,setScene]=useState(null);
   const [color, setColor] = useState("#FFFFFF");
@@ -26,16 +26,19 @@ const updateScene=(mockup)=>{
 
 
   const handleColorChange = (color) => {
-    setColor(color);
+    setColor(color); 
+    updateColorForRightSide(color)
   };
 
   const handleTextureChange = (texture) => {
-    setTexture(texture);
+    setTexture(texture); 
+    updateTextureForRightSide(texture)
    
   };
 
   const handleSizeChange = ([x,y,z]) => {
     setScale([x,y,z]); 
+    updateSizeForRightSide([x,y,z])
    
   };
   const handleMaterialChange=(materialType) =>{ 

@@ -4,23 +4,39 @@ import Header from "../components/Header";
 import Main from "./Main";
 
 function RightSide({idUser}){  
-  const [scene,setScene]=useState(null)
-  const [projectname,setProjectName]=useState('') 
+  const [scene,setScene]=useState(null) 
+  const [projectname,setProjectName]=useState('')  
+  const [color, setColor] = useState("#FFFFFF");
+  const [texture, setTexture] = useState(null);
+  const [scale,setScale]=useState([1,1,1]) ;
   const handleProjectName=(name)=>{
     setProjectName(name);
   } 
   const updateScene=(mockup)=>{
     setScene(mockup);
   
-  } 
+  }  
+
+  const handleColorChange = (color) => {
+    setColor(color);
+  };
+
+  const handleTextureChange = (texture) => {
+    setTexture(texture);
+   
+  };
+
+  const handleSizeChange = ([x,y,z]) => {
+    setScale([x,y,z]); 
+   
+  };
   return( 
    
     <div className="RightSide"> 
     
-      <Header onChangeNameproject={handleProjectName} idUser={idUser} scene={scene}/> 
-      <Main projectname={projectname} idUser={idUser} updateSceneForRightSide={updateScene} /> 
-   
-    
+      <Header onChangeNameproject={handleProjectName} idUser={idUser} scene={scene} color={color} size={scale} texture={texture}/> 
+      <Main projectname={projectname} idUser={idUser} updateSceneForRightSide={updateScene} updateColorForRightSide={handleColorChange} updateTextureForRightSide={handleTextureChange} updateSizeForRightSide={handleSizeChange} /> 
+  
     </div>
   )
 } 

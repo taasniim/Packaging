@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box'; 
 import axios from 'axios';
 
-function Header({onChangeNameproject,idUser,scene}) { 
+function Header({onChangeNameproject,idUser,scene,color,size,texture}) { 
   const [projectName, setProjectName] = useState('');
 
   const handleInputChange = (e) => {
@@ -33,13 +33,13 @@ function Header({onChangeNameproject,idUser,scene}) {
         }} 
         else{
           const mockup={ 
-            reference:scene.reference,
-            tag:scene.tag,
-            Description:scene.Description,
-            price:scene.price,
-            idBasedModel:scene.id} 
+            ...scene, 
+            color:color,
+            texture:texture,
+            size:{x:size[0],y:size[1],z:size[2]},
+          } 
              const response=await axios.post('http://localhost:5000/api/mockups',mockup)  
-            
+            console.log('mockkkkkkkkkkkkkkup heaaaader',response)
              const idMockup=response.data._id;  
             
              project={
@@ -70,7 +70,9 @@ function Header({onChangeNameproject,idUser,scene}) {
         <input className="InputWithTitle" placeholder="Project name"  value={projectName}
           onChange={handleInputChange}></input>   
         <button  className="saveButton" onClick={createProject}> save</button> 
-        
+        { console.log('color header ',color)}
+   { console.log('sizer header',size)}
+   { console.log('texture header ',texture)}
       </div>  
 
       <div className="Right">  
