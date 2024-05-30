@@ -18,7 +18,7 @@ const mockupSchema = new Schema(
         },
         texture:{
             type: "String",
-            required: true,
+            required: false,
         },
         quantity:{
             type: Number ,
@@ -31,22 +31,22 @@ const mockupSchema = new Schema(
         color:{
             type:String,
             default:'gray',
-            required:true,
+            required:false,
         } ,
         size:{
            x: {
             type: Number,
-            required:true,
+            required:false,
 
             } ,
            y: {
                 type: Number,
-                required:true,
+                required:false,
     
                 },
               z:  {
                     type: Number,
-                    required:true,
+                    required:false,
         
                     }
                 } ,
@@ -59,7 +59,10 @@ const mockupSchema = new Schema(
                     type:String,
                     required:false,
                 } ,
-               
+               idBasedModel:{
+                type:Number,
+                required:true,
+               }
 
        
         

@@ -3,18 +3,24 @@ import { useState } from "react";
 import Header from "../components/Header"; 
 import Main from "./Main";
 
-function RightSide({idUser}){ 
+function RightSide({idUser}){  
+  const [scene,setScene]=useState(null)
   const [projectname,setProjectName]=useState('') 
   const handleProjectName=(name)=>{
     setProjectName(name);
-  }
+  } 
+  const updateScene=(mockup)=>{
+    setScene(mockup);
+  
+  } 
   return( 
    
     <div className="RightSide"> 
     
-      <Header onChangeNameproject={handleProjectName}/> 
-      <Main projectname={projectname} idUser={idUser} /> 
-    {console.log('title og project right side ',projectname)}
+      <Header onChangeNameproject={handleProjectName} idUser={idUser} scene={scene}/> 
+      <Main projectname={projectname} idUser={idUser} updateSceneForRightSide={updateScene} /> 
+   
+    
     </div>
   )
 } 

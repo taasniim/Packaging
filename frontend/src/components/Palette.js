@@ -134,7 +134,7 @@ const handleColor=(event)=>{
         <input type="number" name="" id="" placeholder="quantité personnalisé" />  
       </div>   
       <p>Preview</p> 
-      {console.log(' scene of Preview', scene )}
+     
     
     <div className={`Preview ${dispalyPreview? 'active' : 'inactive'}`} style={{width:'170px'}} onClick={onClickdisplayPreview}>  
   
@@ -150,7 +150,7 @@ const handleColor=(event)=>{
         
 
   </div>
-  {console.log('sceeeeeeeeeeeene de preview',scene)}
+  
       <div className="Export">  
         <p>Export</p>
         <select id="imageType" name="imageType">
@@ -281,24 +281,8 @@ const handleColor=(event)=>{
 
 
 
-export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ,projectname,idUser}){ 
-  const createProject= async()=>{ 
-    if (projectname.length===0 || !idUser){
-      return;
-    }
-   
-      try{ 
-        const project={
-          project_name:projectname, 
-          owner:idUser
-        }
-      
-      await axios.post('http://localhost:5000/api/project',project)
-      }
-    catch(error){
-      console.error('Error while saving project:', error);
-    }
-  }
+export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ,projectname}){ 
+
   return(
 <div className='BottomSmallPalette'>    
 <IconButton aria-label='RotaionZ'>
@@ -321,10 +305,10 @@ export function BottomSmallPalete({zoomin,zoomout,rotationX,rotationY,rotationZ,
         <LooksTwoIcon  sx={{color:'navy'}}/>
       </IconButton>
       <IconButton >
-        <FileDownloadRoundedIcon  sx={{color:'navy'}} onClick={createProject}/>
+        <FileDownloadRoundedIcon  sx={{color:'navy'}}/>
       </IconButton>
 
-{console.log('project name filedownlod icon',projectname)}
+
 
 </div>);
 } 

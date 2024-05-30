@@ -11,7 +11,7 @@ import { InternalList,ExternalList } from "../data/mockup";
   import * as THREE from "three";
 
   
-export function Mockup( {color}){
+/*export function Mockup( {color}){
   const mtl=useLoader(MTLLoader,"untitled.mtl");
   const obj=useLoader(OBJLoader,"untitled.obj",(loader)=>loader.setMaterials(mtl)); 
 
@@ -30,7 +30,7 @@ export function Mockup( {color}){
       <primitive object={obj}/>
     </group>
   )
-}    
+}  */  
 
 
 
@@ -48,7 +48,7 @@ export function ExternalMockup( {color, scale,rotation , texture ,materialType,A
   const selectedMaterial= new THREE.TextureLoader().load(materialType); 
   material.map=selectedMaterial;
 }  
-console.log("Material type of external Mockup", materialType)
+
 
 
 
@@ -79,10 +79,10 @@ glb.scene.traverse((node) => {
       if (Animation) //ken famma animation
       { 
         action.time=(clip.duration*Animation)/100; //time twa9fou fi nesba mou3ayna  
-        console.log(action.time)
+       
         action.paused=true;// wtwa9ef el animation 8adi
       }
-      console.log("action",action)
+      
       action.play();
     });
   }

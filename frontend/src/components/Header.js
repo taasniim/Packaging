@@ -9,15 +9,54 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from '@material-ui/core';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box'; 
+import axios from 'axios';
 
-
-function Header({onChangeNameproject}) { 
+function Header({onChangeNameproject,idUser,scene}) { 
   const [projectName, setProjectName] = useState('');
 
   const handleInputChange = (e) => {
     setProjectName(e.target.value); 
     onChangeNameproject(e.target.value)
-  };
+  }; 
+  const createProject= async()=>{  
+   let project;
+    if (projectName.length===0 || !idUser){
+      return;
+    }
+    
+      try{  
+        if(!scene) {
+         project={
+          project_name:projectName, 
+          owner:idUser 
+          
+        }} 
+        else{
+          const mockup={ 
+            reference:scene.reference,
+            tag:scene.tag,
+            Description:scene.Description,
+            price:scene.price,
+            idBasedModel:scene.id} 
+             const response=await axios.post('http://localhost:5000/api/mockups',mockup)  
+            
+             const idMockup=response.data._id;  
+            
+             project={
+              project_name:projectName, 
+              owner:idUser,
+              mockups:idMockup,
+             } 
+             
+        } 
+      
+      await axios.post('http://localhost:5000/api/project',project);
+      console.log('projectsaved',project)
+      }
+    catch(error){
+      console.error('Error while saving project:', error);
+    }
+  }
   return (
     <div className="Header"> 
       <div className="Left">  
@@ -30,9 +69,10 @@ function Header({onChangeNameproject}) {
         <p className="Titre">Tool de conception d'emballage</p> 
         <input className="InputWithTitle" placeholder="Project name"  value={projectName}
           onChange={handleInputChange}></input>   
-
+        <button  className="saveButton" onClick={createProject}> save</button> 
+        
       </div>  
-{console.log('header project name ', projectName)}
+
       <div className="Right">  
         <div className="First-container">  
         

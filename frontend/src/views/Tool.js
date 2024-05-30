@@ -18,7 +18,7 @@ function Tool (){
     <div className="Tool">  
     <LeftSide></LeftSide> 
     <RightSide idUser={idUser}></RightSide> 
-    {console.log('idddddddddd',idUser)}
+   
     </div>
   );
 } 

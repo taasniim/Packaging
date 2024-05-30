@@ -8,7 +8,7 @@ import { ExternalList,InternalList } from "../data/mockup";
 
 
 
-function Main({projectname,idUser}){ 
+function Main({projectname,idUser,updateSceneForRightSide}){ 
 
   const [scene,setScene]=useState(null);
   const [color, setColor] = useState("#FFFFFF");
@@ -21,7 +21,7 @@ const [materialType, setMaterialType]= useState(null);
 
 const updateScene=(mockup)=>{
   setScene(mockup);
-
+  updateSceneForRightSide(mockup)
 } 
 
 
@@ -67,7 +67,7 @@ const updateScene=(mockup)=>{
   )
 }
 
-{console.log('project name maiiiiiiiiiiiiiiiiiiiiiiiiiiiiiin',projectname)} 
+
 
 
 </div> 
