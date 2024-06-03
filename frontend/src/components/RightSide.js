@@ -34,8 +34,8 @@ function RightSide({idUser}){
    
     <div className="RightSide"> 
     
-      <Header onChangeNameproject={handleProjectName} idUser={idUser} scene={scene} color={color} size={scale} texture={texture}/> 
-      <Main projectname={projectname} idUser={idUser} updateSceneForRightSide={updateScene} updateColorForRightSide={handleColorChange} updateTextureForRightSide={handleTextureChange} updateSizeForRightSide={handleSizeChange} /> 
+      <Header onChangeNameproject={handleProjectName} projectName={projectname} idUser={idUser} scene={scene} color={color} size={scale} texture={texture}/> 
+      <Main projectname={projectname} idUser={idUser} updateSceneForRightSide={updateScene} updateColorForRightSide={handleColorChange} updateTextureForRightSide={handleTextureChange} updateSizeForRightSide={handleSizeChange} updateProjectName={handleProjectName} /> 
   
     </div>
   )

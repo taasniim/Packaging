@@ -11,12 +11,12 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box'; 
 import axios from 'axios';
 
-function Header({onChangeNameproject,idUser,scene,color,size,texture}) { 
-  const [projectName, setProjectName] = useState('');
+function Header({onChangeNameproject,projectName,idUser,scene,color,size,texture}) { 
+
 
   const handleInputChange = (e) => {
-    setProjectName(e.target.value); 
-    onChangeNameproject(e.target.value)
+    onChangeNameproject(e.target.value); 
+    
   }; 
   const createProject= async()=>{  
    let project;

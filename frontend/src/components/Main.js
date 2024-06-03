@@ -8,13 +8,12 @@ import { ExternalList,InternalList } from "../data/mockup";
 
 
 
-function Main({projectname,idUser,updateSceneForRightSide,updateColorForRightSide,updateTextureForRightSide,updateSizeForRightSide}){ 
+function Main({projectname,idUser,updateSceneForRightSide,updateColorForRightSide,updateTextureForRightSide,updateSizeForRightSide,updateProjectName}){ 
 
-  const [scene,setScene]=useState(null);
+  const [scene,setScene]=useState(null); 
+  
   const [color, setColor] = useState("#FFFFFF");
-
-  const [texture, setTexture] = useState(null);
-
+ const [texture, setTexture] = useState(null);
 const [scale,setScale]=useState([1,1,1]) ;
 const [Listes,setListes]=useState(ExternalList)
 const [materialType, setMaterialType]= useState(null);  
@@ -63,10 +62,10 @@ const updateScene=(mockup)=>{
 <Library handleMain={handleMain}/> 
 
 
-<Scene color={color} texture={texture} size={scale}  material={materialType} TypeOfObject={Listes} updateValueOfScene={updateScene} projectname={projectname} idUser={idUser}/> 
+<Scene scene={scene}color={color} texture={texture} size={scale}  material={materialType} TypeOfObject={Listes} updateValueOfScene={updateScene} projectname={projectname} idUser={idUser} onColorChange={handleColorChange} onSizeChange={handleSizeChange} ontextureChange={handleTextureChange} updateProjectName={updateProjectName}/> 
 { 
   Listes === InternalList ? (<div style={{background:"rgba(238, 239, 243, 1)"}}></div>) : (
-    <Palette onColorChange={handleColorChange} onTextureChange={handleTextureChange} onSizechange={handleSizeChange} onMaterialChange={handleMaterialChange} scene={scene}/> 
+    <Palette onColorChange={handleColorChange} onTextureChange={handleTextureChange} onSizechange={handleSizeChange} onMaterialChange={handleMaterialChange} scene={scene} color={color} scale={scale}/> 
   )
 }
 

@@ -34,39 +34,39 @@ import { FaPause } from 'react-icons/fa';
 import Scene from './Scene';
 import axios from 'axios';
 
-export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange,scene}) { 
-  const [color, setColor] = useState("#FFFFFF");  
+export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange,scene,color,scale}) { 
+ 
   const [dispalyPreview,setdisplayPreview]=useState(false);
-  const [scale,setScale]=useState([1,1,1])
+  
   const [materialType, setMaterialType]= useState(null);  
   const handlesize=(event)=>{ 
     const id= parseInt(event.target.id);
     const value=parseFloat(event.target.value);  
     if (!isNaN(value)){
     if(id===1){
-      setScale([value,scale[1],scale[2]]) 
+      
       onSizechange([value,scale[1],scale[2]])
     }
     else if(id===2){ 
-      setScale([scale[0],value,scale[2]]) 
+     
       onSizechange([scale[0],value,scale[2]])
 
     } 
     else if(id===3){
-      setScale([scale[0],scale[1],value]) 
+      
       onSizechange([scale[0],scale[1],value])
     }
    
   }
   else if (event.target.value === '') {
     if (id === 1) {
-      setScale([0, scale[1], scale[2]]);
+      onSizechange([0, scale[1], scale[2]]);
     } else if (id === 2) { 
-      setScale([scale[0], 0, scale[2]]);
+      onSizechange([scale[0], 0, scale[2]]);
     } else if (id === 3) {
-      setScale([scale[0], scale[1], 0]);
+      onSizechange([scale[0], scale[1], 0]);
     }
-    onSizechange([0, scale[1], scale[2]]); 
+
   }
 
 }
@@ -74,7 +74,7 @@ export function Palette({onColorChange , onTextureChange,onSizechange ,onMateria
 
 const handleColor=(event)=>{
     const newcolor = event.target.value;
-    setColor(newcolor);
+   
     onColorChange(newcolor);
   }
   
@@ -172,7 +172,7 @@ const handleColor=(event)=>{
 
 
 
- export function TopSmallPalette({onDelete,onClickRule,idUser}){
+ export function TopSmallPalette({onDelete,onClickRule,idUser,SizeEdit,TextureEdit,updateValueOfScene,updateValueOfColor,OnEditUpdateProjectName}){
   const [projects, setProjects] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [showAllProjects, setShowAllProjects] = useState(false);
@@ -194,7 +194,8 @@ const handleColor=(event)=>{
   
 
   const handleClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(null); 
+    console.log('hello')
   };
   
  
@@ -210,7 +211,34 @@ const handleColor=(event)=>{
     setShowAllProjects(true);
     handleClose();
   };
+  //chnouwa bech ysir ki yecliqui 3al projet 
+  const handleProjectClick= async(project)=>{ 
+    console.log('the project  clickant is',project.mockups) 
+    const Idmockup=project.mockups; 
+    const projectName=project.project_name;  
+    OnEditUpdateProjectName(projectName)
+    console.log('the project name is ',projectName,'and son mockup is ',Idmockup[0])
+    if(Idmockup.length!==0){
+      try{ 
+        const mockup= await axios.get(`http://localhost:5000/api/mockups/${Idmockup[0]}`)
+        console.log('the donne of mockup is ',mockup) 
+        console.log(mockup.data)
+        console.log(mockup.data.size)
+        console.log(mockup.data.texture)   
+        const{color,size,texture,material,quantity,createdAt,updatedAt,_id,__v,...scene }=mockup.data  
 
+        updateValueOfScene(scene)
+        updateValueOfColor(mockup.data.color) 
+        TextureEdit(texture) 
+        SizeEdit([size.x,size.y,size.z])
+       
+      } 
+      catch (error){
+        console.error('Error fetching data:', error);
+      }
+    }
+    handleClose()
+  }
   return (
     <div className='TopSmallPalette'>
       <Tooltip title="History">
@@ -266,15 +294,15 @@ const handleColor=(event)=>{
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 
       >
-        {/* Display first three projects or all projects if "View More" clicked */}
-        {projects.slice(0, showAllProjects ? projects.length : 6).map(project => (
-          <MenuItem key={project._id} onClick={handleClose}>{project.project_name}
+        {/* Display first six projects or all projects if "View More" clicked */}
+        {projects.slice(0, showAllProjects ? projects.length : 20).map(project => (
+          <MenuItem key={project._id} onClick={()=>handleProjectClick(project)}>{project.project_name}
           <DriveFileRenameOutlineIcon style={{width:'15%',color:'navy'}}/></MenuItem>
         ))}
         {/* Add a "View More" option */}
         <MenuItem onClick={handleViewMore} >View More</MenuItem>
       </Menu>
-
+       {console.log('list of all projects',projects)}
     </div>
   );
 } 

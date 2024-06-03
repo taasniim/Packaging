@@ -10,16 +10,12 @@ import { height, width } from "@mui/system";
 
 
 
-const Scene = ({ color ,texture ,size , materialType,TypeOfObject,updateValueOfScene, projectname,idUser}) => {
+const Scene = ({scene, color ,texture ,size , materialType,TypeOfObject,updateValueOfScene, projectname,idUser,onColorChange,onSizeChange,ontextureChange,updateProjectName}) => {
 
-  const [scene, setScene] = useState(null); 
-  
-  const [scale,setScale]=useState(size); 
 const [rotation,setRotation]=useState([0,0,0]);  
 const[OpenClose,setOpenClose]=useState(0) 
 const [Rule,setRule]=useState(false);
  
-
 
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -33,7 +29,7 @@ const [Rule,setRule]=useState(false);
   const addMocupToScene = (id) => {
     const mockup = ExternalList.find((mockup) => mockup.id === id);
     if (mockup) {
-      setScene(mockup);  
+     
      
       updateValueOfScene(mockup)  
       
@@ -45,20 +41,20 @@ const [Rule,setRule]=useState(false);
 
   const clearScene = () => { 
    
-    setScene(null); 
+   onColorChange("#FFFFFF")
     updateValueOfScene(null)
-    setScale([1,2,1]);
+   onSizeChange([1,1,1])
     setRotation([0,0,0]) 
 
    
   }; 
   const Zoomin=()=>{
-    setScale([scale[0]*1.1,scale[1]*1.1,scale[2]*1.1]) 
-    console.log("hello Zoom in function",scale)
+    onSizeChange([size[0]*1.1,size[1]*1.1,size[2]*1.1]) 
+   
   } 
   const Zoomout=()=>{
-    setScale([scale[0]/1.1,scale[1]/1.1,scale[2]/1.1]) 
-    console.log("hello ZoomOut function",scale)
+    onSizeChange([size[0]/1.1,size[1]/1.1,size[2]/1.1]) 
+   
   }
  const RotationX=()=>{
    setRotation([rotation[0],rotation[1]+(Math.PI)/4,rotation[2]]); 
@@ -74,16 +70,17 @@ const [Rule,setRule]=useState(false);
      
    }
   
-  useEffect(() => {
-    setScale(size);
-  }, [size]);  
   const handleOpenClose=( value)=>{
     setOpenClose(value);  
     
   } 
   const displayRule=()=>{
     setRule(!Rule);
-  }
+  } 
+  
+
+ 
+
   return (
     <div className="Scene">   
     { Rule &&(
@@ -98,7 +95,7 @@ const [Rule,setRule]=useState(false);
 
    
      {/* <Ruler type="horizontal" backgroundColor=" rgba(250, 250, 251, 1)" style={{height:"5%"}}/> */}
-      <TopSmallPalette onDelete={clearScene} onClickRule={displayRule} idUser={idUser} /> 
+      <TopSmallPalette onDelete={clearScene} onClickRule={displayRule} idUser={idUser} SizeEdit={onSizeChange}  TextureEdit={ontextureChange} updateValueOfScene={updateValueOfScene} updateValueOfColor={onColorChange} OnEditUpdateProjectName={updateProjectName}  /> 
      
       {
         TypeOfObject===ExternalList? (
@@ -119,10 +116,10 @@ const [Rule,setRule]=useState(false);
           
           {scene && (
   TypeOfObject === ExternalList ? (
-    <ExternalMockup color={color} scale={scale} rotation={rotation} texture={texture} material={materialType} Animation={OpenClose} />
+    <ExternalMockup color={color} scale={size} rotation={rotation} texture={texture} material={materialType} Animation={OpenClose} />
     
   ) : (
-    <InternalMockup scale={scale} rotation={rotation} />
+    <InternalMockup scale={size} rotation={rotation} />
   )
 ) 
 
