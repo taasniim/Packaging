@@ -484,10 +484,7 @@ const deleteProject = async (_id) => {
 
 
                 )}   
-                {
-                  console.log("homePageid",id)
-                }
-
+                
       </Box>
       
     </Box>

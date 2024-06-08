@@ -51,7 +51,7 @@ exports.createnewProject=async(req,res)=>{
 
     try{
         const project= await Project.create({project_name,Date,owner,members,mockups}); 
-        res.status(201).json({ message: 'Projet créé avec succès.', project });
+        res.status(201).json( project );
     } 
     catch(err){ 
         res.status(500).json({ message: err.message });
@@ -96,9 +96,10 @@ exports.getProjectById = async (req, res) => {
 };
 //al9a el projet bel id mte3ou w men ba3ed 3addilou el donee elli fel body
 exports.updateProject = async (req, res) => { 
-    const projectId=req.params.id;
-    try {
-        const project = await Project.findByIdAndUpdate(projectId, req.body);
+    const projectId=req.params;
+    try { 
+        const options = { new: true, runValidators: true }; 
+        const project = await Project.findByIdAndUpdate(projectId, req.body,options);
         if (!project) {
             return res.status(404).json({ message: 'Project not found' });
         }
@@ -106,7 +107,23 @@ exports.updateProject = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-};
+};  
+/*
+exports.updateprojecttoo=asyncHandler(async(req,res)=> {
+    try {
+        const {id}=req.params;
+        const project =await Project.findByIdAndUpdate(id,req.body);
+        //cannot find any mockup in db 
+        if(!project){
+            return res.status(404).json({message:'cannot found project with id:${id}'})
+        }
+        const updatedproject = await Project.findById(id);
+        res.status(200).json(updatedproject);
+    } catch (error) {
+        res.status(500);
+        throw new Error(error.message);
+    }
+})*/
 
 exports.deleteProject = async (req, res) => { 
     const projectId=req.params.id;

@@ -8,7 +8,7 @@ import { ExternalList,InternalList } from "../data/mockup";
 
 
 
-function Main({projectname,idUser,updateSceneForRightSide,updateColorForRightSide,updateTextureForRightSide,updateSizeForRightSide,updateProjectName}){ 
+function Main({projectname,idUser,updateSceneForRightSide,updateColorForRightSide,updateTextureForRightSide,updateSizeForRightSide,updateProjectName,handleCurrentProject,CurrentProject}){ 
 
   const [scene,setScene]=useState(null); 
   
@@ -62,7 +62,7 @@ const updateScene=(mockup)=>{
 <Library handleMain={handleMain}/> 
 
 
-<Scene scene={scene}color={color} texture={texture} size={scale}  material={materialType} TypeOfObject={Listes} updateValueOfScene={updateScene} projectname={projectname} idUser={idUser} onColorChange={handleColorChange} onSizeChange={handleSizeChange} ontextureChange={handleTextureChange} updateProjectName={updateProjectName}/> 
+<Scene scene={scene}color={color} texture={texture} size={scale}  material={materialType} TypeOfObject={Listes} updateValueOfScene={updateScene} projectname={projectname} idUser={idUser} onColorChange={handleColorChange} onSizeChange={handleSizeChange} ontextureChange={handleTextureChange} updateProjectName={updateProjectName} handleCurrentProject={handleCurrentProject} CurrentProject={CurrentProject}/> 
 { 
   Listes === InternalList ? (<div style={{background:"rgba(238, 239, 243, 1)"}}></div>) : (
     <Palette onColorChange={handleColorChange} onTextureChange={handleTextureChange} onSizechange={handleSizeChange} onMaterialChange={handleMaterialChange} scene={scene} color={color} scale={scale}/> 

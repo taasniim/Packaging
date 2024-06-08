@@ -10,7 +10,7 @@ import { height, width } from "@mui/system";
 
 
 
-const Scene = ({scene, color ,texture ,size , materialType,TypeOfObject,updateValueOfScene, projectname,idUser,onColorChange,onSizeChange,ontextureChange,updateProjectName}) => {
+const Scene = ({scene, color ,texture ,size , materialType,TypeOfObject,updateValueOfScene, projectname,idUser,onColorChange,onSizeChange,ontextureChange,updateProjectName,handleCurrentProject,CurrentProject}) => {
 
 const [rotation,setRotation]=useState([0,0,0]);  
 const[OpenClose,setOpenClose]=useState(0) 
@@ -95,7 +95,7 @@ const [Rule,setRule]=useState(false);
 
    
      {/* <Ruler type="horizontal" backgroundColor=" rgba(250, 250, 251, 1)" style={{height:"5%"}}/> */}
-      <TopSmallPalette onDelete={clearScene} onClickRule={displayRule} idUser={idUser} SizeEdit={onSizeChange}  TextureEdit={ontextureChange} updateValueOfScene={updateValueOfScene} updateValueOfColor={onColorChange} OnEditUpdateProjectName={updateProjectName}  /> 
+      <TopSmallPalette onDelete={clearScene} onClickRule={displayRule} idUser={idUser} SizeEdit={onSizeChange}  TextureEdit={ontextureChange} updateValueOfScene={updateValueOfScene} updateValueOfColor={onColorChange} OnEditUpdateProjectName={updateProjectName} handleCurrentProject={handleCurrentProject} CurrentProject={CurrentProject} /> 
      
       {
         TypeOfObject===ExternalList? (

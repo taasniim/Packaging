@@ -20,9 +20,10 @@ import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 import RotateLeftIcon from '@mui/icons-material/RotateLeft';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import {  Tooltip, Menu, MenuItem } from '@mui/material';
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+import EditIcon from '@mui/icons-material/Edit';
 import ZoomInRoundedIcon from '@mui/icons-material/ZoomInRounded';
 import ZoomOutRoundedIcon from '@mui/icons-material/ZoomOutRounded';
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
@@ -172,7 +173,7 @@ const handleColor=(event)=>{
 
 
 
- export function TopSmallPalette({onDelete,onClickRule,idUser,SizeEdit,TextureEdit,updateValueOfScene,updateValueOfColor,OnEditUpdateProjectName}){
+ export function TopSmallPalette({onDelete,onClickRule,idUser,SizeEdit,TextureEdit,updateValueOfScene,updateValueOfColor,OnEditUpdateProjectName,handleCurrentProject}){
   const [projects, setProjects] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [showAllProjects, setShowAllProjects] = useState(false);
@@ -211,10 +212,11 @@ const handleColor=(event)=>{
     setShowAllProjects(true);
     handleClose();
   };
-  //chnouwa bech ysir ki yecliqui 3al projet 
-  const handleProjectClick= async(project)=>{ 
+  //chnouwa bech ysir ki yecliqui 3al bouton edit  projet fel history 
+  const handleEditClick= async(project)=>{ 
     console.log('the project  clickant is',project.mockups) 
     const Idmockup=project.mockups; 
+   
     const projectName=project.project_name;  
     OnEditUpdateProjectName(projectName)
     console.log('the project name is ',projectName,'and son mockup is ',Idmockup[0])
@@ -236,8 +238,23 @@ const handleColor=(event)=>{
       catch (error){
         console.error('Error fetching data:', error);
       }
-    }
+    } 
+    handleCurrentProject(project)
     handleClose()
+  } 
+
+  //chnouw bech ysir ki yenzel 3al bouton delete fel history 
+  const handleDeleteClick= async(project)=>{
+    const idProject=project._id
+   try{
+    await axios.delete(`http://localhost:5000/api/project/${idProject}`) 
+    setProjects((prevProjects) => prevProjects.filter((p) => p._id !== idProject)); 
+   } 
+   catch(error){
+    console.error("un error ", error);
+
+   }
+   
   }
   return (
     <div className='TopSmallPalette'>
@@ -296,8 +313,19 @@ const handleColor=(event)=>{
       >
         {/* Display first six projects or all projects if "View More" clicked */}
         {projects.slice(0, showAllProjects ? projects.length : 20).map(project => (
-          <MenuItem key={project._id} onClick={()=>handleProjectClick(project)}>{project.project_name}
-          <DriveFileRenameOutlineIcon style={{width:'15%',color:'navy'}}/></MenuItem>
+          <MenuItem key={project._id}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+            <span>{project.project_name}</span>
+            <Box>
+            <IconButton sx={{ color: 'navy' }} onClick={() => handleEditClick(project)}>
+              <EditIcon />
+            </IconButton>
+            <IconButton sx={{ color: 'navy' }}  onClick={() => handleDeleteClick(project)}>
+              <DeleteIcon/>
+            </IconButton> 
+            </Box>
+          </Box>
+        </MenuItem>
         ))}
         {/* Add a "View More" option */}
         <MenuItem onClick={handleViewMore} >View More</MenuItem>

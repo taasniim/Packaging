@@ -8,9 +8,13 @@ function RightSide({idUser}){
   const [projectname,setProjectName]=useState('')  
   const [color, setColor] = useState("#FFFFFF");
   const [texture, setTexture] = useState(null);
-  const [scale,setScale]=useState([1,1,1]) ;
+  const [scale,setScale]=useState([1,1,1]) ; 
+  const[CurrentProject,setCurrentProject]=useState(null) 
   const handleProjectName=(name)=>{
     setProjectName(name);
+  }  
+  const handleCurrentProject=(project)=>{
+    setCurrentProject(project)
   } 
   const updateScene=(mockup)=>{
     setScene(mockup);
@@ -34,8 +38,8 @@ function RightSide({idUser}){
    
     <div className="RightSide"> 
     
-      <Header onChangeNameproject={handleProjectName} projectName={projectname} idUser={idUser} scene={scene} color={color} size={scale} texture={texture}/> 
-      <Main projectname={projectname} idUser={idUser} updateSceneForRightSide={updateScene} updateColorForRightSide={handleColorChange} updateTextureForRightSide={handleTextureChange} updateSizeForRightSide={handleSizeChange} updateProjectName={handleProjectName} /> 
+      <Header onChangeNameproject={handleProjectName} projectName={projectname} idUser={idUser} scene={scene} color={color} size={scale} texture={texture} handleCurrentProject={handleCurrentProject} Project={CurrentProject}/> 
+      <Main projectname={projectname} idUser={idUser} updateSceneForRightSide={updateScene} updateColorForRightSide={handleColorChange} updateTextureForRightSide={handleTextureChange} updateSizeForRightSide={handleSizeChange} updateProjectName={handleProjectName} handleCurrentProject={handleCurrentProject} CurrentProject={CurrentProject} /> 
   
     </div>
   )
