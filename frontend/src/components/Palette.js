@@ -139,11 +139,11 @@ const handleColor=(event)=>{
     
     <div className={`Preview ${dispalyPreview? 'active' : 'inactive'}`} style={{width:'170px'}} onClick={onClickdisplayPreview}>  
   
-  <Canvas>
+  <Canvas camera={{ position: [0, 1, 2] }}>
   <ambientLight /> 
   <pointLight position={[10, 10, 10]} />  
 
-       {scene && <Preview color={color} scale={scale} displayPreview={dispalyPreview}/>}
+       {scene && <Preview color={color} scale={[scale[0]*0.3,scale[1]*0.3,scale[2]*0.3]} displayPreview={dispalyPreview}/>}
 
   </Canvas>
 

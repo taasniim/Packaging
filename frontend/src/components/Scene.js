@@ -104,7 +104,7 @@ const [Rule,setRule]=useState(false);
       }
 
       <div className="RealScene" ref={drop} style={{ width: "95%", height: "70%", alignContent: "center", marginBottom:'0%'}}>
-        <Canvas camera={{ position: [0, 0, 5] }} style={{display:'inline-block'}}>
+        <Canvas camera={{ position: [0, 5, 0] }} style={{display:'inline-block'}}>
          
           <ambientLight />
           <pointLight position={[10, 10, 10]} />

@@ -11,33 +11,14 @@ import { InternalList,ExternalList } from "../data/mockup";
   import * as THREE from "three";
 
   
-/*export function Mockup( {color}){
-  const mtl=useLoader(MTLLoader,"untitled.mtl");
-  const obj=useLoader(OBJLoader,"untitled.obj",(loader)=>loader.setMaterials(mtl)); 
 
-  
-  
-  const material = new THREE.MeshBasicMaterial({ color : color });
- ;
-  
-  
-  
-  
- 
-  
-  return(
-    <group >
-      <primitive object={obj}/>
-    </group>
-  )
-}  */  
 
 
 
 export function ExternalMockup( {color, scale,rotation , texture ,materialType,Animation}){
   
   
-  const glb=useLoader(GLTFLoader,"box-animation-template-gltf.glb")
+  const glb=useLoader(GLTFLoader,"myboxx.glb")
 
  
   const material = new THREE.MeshBasicMaterial({ color : color ,side: THREE.DoubleSide });
@@ -75,7 +56,8 @@ glb.scene.traverse((node) => {
      
       const action = mixer.clipAction(clip);  
       //action.paused=false; ebih el variable hedha nwa9fou bih el animation    
-      action.paused=true
+      action.paused=true 
+   
       if (Animation) //ken famma animation
       { 
         action.time=(clip.duration*Animation)/100; //time twa9fou fi nesba mou3ayna  
@@ -97,7 +79,8 @@ glb.scene.traverse((node) => {
 
   
   return(
-    <group scale={[scale[0],scale[1],scale[2]]} rotation={[rotation[0],rotation[1],rotation[2]]} >
+    <group scale={[scale[0],scale[1],scale[2]]} rotation={[rotation[0],rotation[1],rotation[2]]}   > 
+   
       { glb.scene && <primitive object={glb.scene}   />}
     </group>
   )
@@ -122,7 +105,7 @@ export function InternalMockup( { scale}){
 
 
  export function Preview({color,scale,displayPreview}){ 
-  const glb=useLoader(GLTFLoader,"box-animation-template-for-preview.glb");
+  const glb=useLoader(GLTFLoader,"myboxx-for-preview.glb");
   const material = new THREE.MeshBasicMaterial({ color : color ,side: THREE.DoubleSide });
   glb.scene.traverse((node) => {
     if (node.isMesh) {

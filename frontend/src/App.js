@@ -26,12 +26,12 @@ setUserID(id);
 
       
     <Route exact path="/home" element={<HomePage id={idUser}/>} />
-    {console.log("app js id",idUser)}
+   
     <Route exact path="/" element={<Login  updateid={updateId}/>} />
       <Route exact path="/signup" element={<Signup/>} />
 
       <Route exact path="/Tool" element={<Tool />} />
-      {console.log('tool3',idUser)}
+    
     </Routes>
     </Router> 
     </div>
