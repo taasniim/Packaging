@@ -36,6 +36,7 @@ const SignUp = () => {
           if (!response.ok) {
               // Handle the case where the request was not successful
               throw new Error('Network response was not ok');
+              
           }
   
           const responseData = await response.json();
@@ -44,6 +45,7 @@ const SignUp = () => {
           window.location.href = '/';
       } catch (error) {
           setError(error.message);
+          alert("Invalid syntax");
       }
   };
   

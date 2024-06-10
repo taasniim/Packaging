@@ -37,7 +37,7 @@ const Login = ({updateid}) => {
 
         if (!response.ok) {
             // Handle other cases, such as wrong password or invalid user
-            alert("Invalid email or password");
+            alert("Invalid email or phone number or password");
             return;
         }
 
