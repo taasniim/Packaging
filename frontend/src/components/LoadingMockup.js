@@ -18,7 +18,7 @@ import { InternalList,ExternalList } from "../data/mockup";
 export function ExternalMockup( {color, scale,rotation , texture ,materialType,Animation}){
   
   
-  const glb=useLoader(GLTFLoader,"myboxx.glb")
+  const glb=useLoader(GLTFLoader,"boxx2.glb")
 
  
   const material = new THREE.MeshBasicMaterial({ color : color ,side: THREE.DoubleSide });

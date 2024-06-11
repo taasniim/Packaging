@@ -38,7 +38,7 @@ import axios from 'axios';
 export function Palette({onColorChange , onTextureChange,onSizechange ,onMaterialChange,scene,color,scale}) { 
  
   const [dispalyPreview,setdisplayPreview]=useState(false);
-  
+  const [quantity,setQuantity]=useState(null)
   const [materialType, setMaterialType]= useState(null);  
   const handlesize=(event)=>{ 
     const id= parseInt(event.target.id);
@@ -94,6 +94,12 @@ const handleColor=(event)=>{
     setdisplayPreview(!dispalyPreview);
   }
 
+  const onChangequantity=(e)=>{ 
+    if (Number(e.target.value)==='null'){
+      setQuantity(null)
+    }
+    setQuantity(Number(e.target.value))
+  }
 
   return( 
     <div className="Palette">   
@@ -131,8 +137,12 @@ const handleColor=(event)=>{
           <div> <p className="Number"> 500pc</p> <hr /> <p className="Price">  {scene !== null && ( <span>{scene.price*500}</span>)}dt</p></div>  
           <div> <p className="Number"> 1000pc</p> <hr /> <p className="Price">  {scene !== null && ( <span>{scene.price*1000}</span>)}dt</p></div>   
           {console.log(' scene of Palette', scene )}
-        </div>  
-        <input type="number" name="" id="" placeholder="quantité personnalisé" />  
+        </div>   
+        <div className='price'>
+          <input type="number" name="" id="" value={quantity} placeholder="quantité personnalisé" onChange={onChangequantity} /> 
+          <span> {scene!==null &&( scene.price*quantity) } dt</span>
+           </div>
+      
       </div>   
       <p>Preview</p> 
      

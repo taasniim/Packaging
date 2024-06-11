@@ -414,11 +414,21 @@ display: inline-block;
 }  
 .Palette .Quantity .List-price div .Number{
   color: rgba(65, 48, 188, 1) ;
-}
-.Palette .Quantity  input{ 
-  width: 100%; 
-  color: gray;
 } 
+.Palette .Quantity  .price{
+  border-color: rgb(147, 143, 143); 
+  border-width: 1px; 
+  border-style: solid;
+}
+.Palette .Quantity .price input{ 
+  width: 70%; 
+ 
+  border: none; 
+  outline: none;
+}   
+.Palette .Quantity .price span{
+  width: 30%;
+}
 
 .Palette .Preview p{
   font-weight: 500; 
