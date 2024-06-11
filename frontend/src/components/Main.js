@@ -64,7 +64,7 @@ const updateScene=(mockup)=>{
 
 <Scene scene={scene}color={color} texture={texture} size={scale}  material={materialType} TypeOfObject={Listes} updateValueOfScene={updateScene} projectname={projectname} idUser={idUser} onColorChange={handleColorChange} onSizeChange={handleSizeChange} ontextureChange={handleTextureChange} updateProjectName={updateProjectName} handleCurrentProject={handleCurrentProject} CurrentProject={CurrentProject}/> 
 { 
-  Listes === InternalList ? (<div style={{background:"rgba(238, 239, 243, 1)"}}></div>) : (
+  Listes === InternalList ? (<div style={{background:"#f2f2f2"}}></div>) : (
     <Palette onColorChange={handleColorChange} onTextureChange={handleTextureChange} onSizechange={handleSizeChange} onMaterialChange={handleMaterialChange} scene={scene} color={color} scale={scale}/> 
   )
 }

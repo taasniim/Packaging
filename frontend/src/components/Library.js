@@ -66,7 +66,7 @@ function Library({ handleMain }) {
 
       <div className="Search">
         <Paper component="form" sx={{ p: '1px 2px', display: 'flex', alignItems: 'center', width: 200 }}>
-          <InputBase sx={{ ml: 0.5, flex: 1 }} placeholder="Search Project" inputProps={{ 'aria-label': 'search project' }} />
+          <InputBase sx={{ ml: 0.5, flex: 1 }} placeholder="Search mockup" inputProps={{ 'aria-label': 'search mockup' }} />
           <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
             <SearchIcon />
           </IconButton>
